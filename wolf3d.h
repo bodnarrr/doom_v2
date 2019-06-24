@@ -35,6 +35,9 @@
 
 # define TX_COUNT 9
 
+# define SPEED_RIGHT -1.5
+# define SPEED_LEFT 1.5
+
 # define SKY			0x2C6177
 # define GROUND			0x77672C
 
