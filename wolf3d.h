@@ -38,6 +38,8 @@
 # define SPEED_RIGHT -1.5
 # define SPEED_LEFT 1.5
 
+# define JUMP_HEIGHT 80
+
 # define SKY			0x2C6177
 # define GROUND			0x77672C
 
@@ -69,6 +71,7 @@ typedef struct	s_position
 	double		move_speed;
 	double		rotate_speed;
 	int 		height;
+	double		jump;
 }				t_position;
 
 typedef struct	s_wolf

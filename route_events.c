@@ -98,4 +98,6 @@ void		route_events(SDL_Scancode code, t_wolf *params)
 		increase_rotate_speed(TRUE, params);
 	else if (code == SDL_SCANCODE_LEFT)
 		increase_rotate_speed(FALSE, params);
+	else if (code == SDL_SCANCODE_SPACE)
+		params->pos_info.jump = JUMP_HEIGHT;
 }

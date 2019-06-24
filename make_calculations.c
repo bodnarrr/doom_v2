@@ -19,7 +19,7 @@ static void	draw_column(int x, int height, t_wolf *params)
 	int i;
 	int pos;
 
-	start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.height;
+	start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.height + (int)params->pos_info.jump;
 	pixels = (int*)params->sdl.surface->pixels;
 	i = -1;
 	while (++i < SCREEN_HEIGHT)
