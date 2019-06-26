@@ -60,6 +60,13 @@ typedef struct	s_sdl
 	SDL_Event	event;
 }				t_sdl;
 
+typedef struct	s_sprite
+{
+	SDL_Surface	*texture;
+	int 		x;
+	int 		y;
+}				t_sprite;
+
 typedef struct	s_position
 {
 	double		pos_x;
@@ -85,7 +92,12 @@ typedef struct	s_wolf
 	char		*error;
 	int			side;
 	int			wall_color;
-	u_long 		textures[TX_COUNT];
+	SDL_Surface *texture;
+	t_sprite	sprite;
+	double 		wall_x;
+	double 		ray_x;
+	double 		ray_y;
+	double		z_buffer[SCREEN_WIDTH];
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -120,5 +132,6 @@ void			parse_map(t_wolf *params, char *raw_map);
 void			add_perimeter_walls(int **map);
 void			set_wall_color(t_wolf *params, int value);
 void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
+void			draw_sprites(t_wolf *params);
 
 #endif

@@ -100,6 +100,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/doom_actual.dir/route_events.c.o"
   "CMakeFiles/doom_actual.dir/set_wall_color.c.o"
   "CMakeFiles/doom_actual.dir/mouse_move.c.o"
+  "CMakeFiles/doom_actual.dir/draw_sprites.c.o"
   "doom_actual.pdb"
   "doom_actual"
 )

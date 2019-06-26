@@ -204,6 +204,33 @@ check_event.c.s:
 	$(MAKE) -f CMakeFiles/doom_actual.dir/build.make CMakeFiles/doom_actual.dir/check_event.c.s
 .PHONY : check_event.c.s
 
+draw_sprites.o: draw_sprites.c.o
+
+.PHONY : draw_sprites.o
+
+# target to build an object file
+draw_sprites.c.o:
+	$(MAKE) -f CMakeFiles/doom_actual.dir/build.make CMakeFiles/doom_actual.dir/draw_sprites.c.o
+.PHONY : draw_sprites.c.o
+
+draw_sprites.i: draw_sprites.c.i
+
+.PHONY : draw_sprites.i
+
+# target to preprocess a source file
+draw_sprites.c.i:
+	$(MAKE) -f CMakeFiles/doom_actual.dir/build.make CMakeFiles/doom_actual.dir/draw_sprites.c.i
+.PHONY : draw_sprites.c.i
+
+draw_sprites.s: draw_sprites.c.s
+
+.PHONY : draw_sprites.s
+
+# target to generate assembly for a file
+draw_sprites.c.s:
+	$(MAKE) -f CMakeFiles/doom_actual.dir/build.make CMakeFiles/doom_actual.dir/draw_sprites.c.s
+.PHONY : draw_sprites.c.s
+
 handle_error.o: handle_error.c.o
 
 .PHONY : handle_error.o
@@ -2868,6 +2895,9 @@ help:
 	@echo "... check_event.o"
 	@echo "... check_event.i"
 	@echo "... check_event.s"
+	@echo "... draw_sprites.o"
+	@echo "... draw_sprites.i"
+	@echo "... draw_sprites.s"
 	@echo "... handle_error.o"
 	@echo "... handle_error.i"
 	@echo "... handle_error.s"

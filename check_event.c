@@ -40,11 +40,13 @@ void		check_event(SDL_Event event, t_wolf *params)
 	{
 		route_events(code, params);
 		make_calculations(params);
+		draw_sprites(params);
 	}
 	else if (event.type == SDL_MOUSEMOTION)
 	{
 		route_mouse_move(event.motion, params);
 		make_calculations(params);
+		draw_sprites(params);
 	}
 	if (params->pos_info.jump > 0)
 	{

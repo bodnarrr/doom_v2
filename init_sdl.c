@@ -14,11 +14,10 @@
 
 static void	prepare_textures(t_wolf *params)
 {
-	(void)params;
-
-	SDL_Surface *texture1 = IMG_Load("./media/textures/fall.jpg");
-
-	ft_printf("Width: %d Height: %d\n", texture1->w, texture1->h);
+	params->texture = IMG_Load("./media/textures/fall.jpg");
+	params->sprite.texture = IMG_Load("./media/pics/dreamcatcher.png");
+	params->sprite.y = 4;
+	params->sprite.x = 2;
 }
 
 bool		init_sdl(t_wolf *params)

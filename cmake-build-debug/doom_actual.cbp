@@ -111,6 +111,9 @@
 		<Unit filename="/Users/andrii/Develop/doom_actual/check_event.c">
 			<Option target="doom_actual"/>
 		</Unit>
+		<Unit filename="/Users/andrii/Develop/doom_actual/draw_sprites.c">
+			<Option target="doom_actual"/>
+		</Unit>
 		<Unit filename="/Users/andrii/Develop/doom_actual/frameworks/SDL2.framework/Headers/SDL.h">
 			<Option target="doom_actual"/>
 		</Unit>

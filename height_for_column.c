@@ -79,7 +79,19 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 	}
 }
 
-void		calc_wall_distance(t_wolf *params, t_iterations *iter)
+void		calc_wall_x(t_wolf *params, t_iterations *iter, int x)
+{
+	if (params->side == 0)
+		params->wall_x = params->pos_info.pos_y + iter->perp_wall_dist * iter->ray_dir_y;
+	else
+		params->wall_x = params->pos_info.pos_x + iter->perp_wall_dist * iter->ray_dir_x;
+	params->wall_x -= floor(params->wall_x);
+	params->ray_x = iter->ray_dir_x;
+	params->ray_y = iter->ray_dir_y;
+	params->z_buffer[x] = iter->perp_wall_dist;
+}
+
+void		calc_wall_distance(t_wolf *params, t_iterations *iter, int x)
 {
 	if (params->side == 0)
 		iter->perp_wall_dist = ((double)iter->map_x - params->pos_info.pos_x
@@ -89,6 +101,7 @@ void		calc_wall_distance(t_wolf *params, t_iterations *iter)
 		iter->perp_wall_dist = ((double)iter->map_y - params->pos_info.pos_y
 				+ ((double)1.0 - (double)iter->step_y) / (double)2.0)
 				/ iter->ray_dir_y;
+	calc_wall_x(params, iter, x);
 }
 
 int			height_for_column(int x, t_wolf *params)
@@ -99,6 +112,6 @@ int			height_for_column(int x, t_wolf *params)
 	calc_cam_ray(x, params, &iter);
 	calc_axes(params, &iter);
 	check_wall_hit(params, &iter);
-	calc_wall_distance(params, &iter);
+	calc_wall_distance(params, &iter, x);
 	return (int)((double)SCREEN_HEIGHT / iter.perp_wall_dist);
 }

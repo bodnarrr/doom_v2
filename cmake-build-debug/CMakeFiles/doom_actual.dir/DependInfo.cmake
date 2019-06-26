@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/andrii/Develop/doom_actual/add_perimeter_walls.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/add_perimeter_walls.c.o"
   "/Users/andrii/Develop/doom_actual/check_arguments.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/check_arguments.c.o"
   "/Users/andrii/Develop/doom_actual/check_event.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/check_event.c.o"
+  "/Users/andrii/Develop/doom_actual/draw_sprites.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/draw_sprites.c.o"
   "/Users/andrii/Develop/doom_actual/handle_error.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/handle_error.c.o"
   "/Users/andrii/Develop/doom_actual/handle_map_error.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/handle_map_error.c.o"
   "/Users/andrii/Develop/doom_actual/height_for_column.c" "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/doom_actual.dir/height_for_column.c.o"

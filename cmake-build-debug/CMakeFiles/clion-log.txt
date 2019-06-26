@@ -1,8 +1,4 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/andrii/Develop/doom_actual
-CMake Error at CMakeLists.txt:396 (target_link_libraries):
-  Cannot specify link libraries for target "Wolf3D" which is not built by
-  this project.
-
-
--- Configuring incomplete, errors occurred!
-See also "/Users/andrii/Develop/doom_actual/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/andrii/Develop/doom_actual/cmake-build-debug
