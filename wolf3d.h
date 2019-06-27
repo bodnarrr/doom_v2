@@ -14,9 +14,13 @@
 # define WOLF3D_H
 
 # include "libftprintf/libftprintf.h"
-# include "./frameworks/SDL2/SDL.h"
-# include "./frameworks/SDL2/SDL_events.h"
-# include "./frameworks/SDL2/SDL_image.h"
+//# include "./frameworks/SDL2/SDL.h"
+//# include "./frameworks/SDL2/SDL_events.h"
+//# include "./frameworks/SDL2/SDL_image.h"
+# include <SDL2/SDL.h>
+# include <SDL2/SDL_image.h>
+# include <SDL2/SDL_ttf.h>
+# include <SDL2/SDL_mixer.h>
 # include <math.h>
 
 # include <stdbool.h>
@@ -58,14 +62,30 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
+    double		perp_wall_dist;
+    double		ray_dir_x;
+    double		ray_dir_y;
+    int			map_x;
+    int			map_y;
 }				t_sdl;
 
 typedef struct	s_sprite
 {
-	SDL_Surface	*texture;
-	int 		x;
-	int 		y;
+    SDL_Surface	*texture;
+    int 		x;
+    int 		y;
 }				t_sprite;
+
+typedef struct	s_draw_wall
+{
+	int			wall_start;
+	int 		wall_end;
+	Uint32		*pixels;
+	int 		tex_x;
+	int 		tex_y;
+	int 		d;
+	int         pos;
+}				t_draw_wall;
 
 typedef struct	s_position
 {
@@ -91,7 +111,7 @@ typedef struct	s_wolf
 	bool		did_read_map;
 	char		*error;
 	int			side;
-	int			wall_color;
+	Uint32		wall_color;
 	SDL_Surface *texture;
 	t_sprite	sprite;
 	double 		wall_x;
@@ -133,5 +153,7 @@ void			add_perimeter_walls(int **map);
 void			set_wall_color(t_wolf *params, int value);
 void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
 void			draw_sprites(t_wolf *params);
+//void            hud(t_wolf *params);
+void			draw_textured_wall(int x, int height, t_wolf *params);
 
 #endif

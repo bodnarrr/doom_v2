@@ -101,6 +101,11 @@ void		calc_wall_distance(t_wolf *params, t_iterations *iter, int x)
 		iter->perp_wall_dist = ((double)iter->map_y - params->pos_info.pos_y
 				+ ((double)1.0 - (double)iter->step_y) / (double)2.0)
 				/ iter->ray_dir_y;
+	params->sdl.perp_wall_dist = iter->perp_wall_dist;
+	params->sdl.map_y = iter->map_y;
+    params->sdl.map_x = iter->map_x;
+    params->sdl.ray_dir_y = iter->ray_dir_y;
+    params->sdl.ray_dir_x = iter->ray_dir_x;
 	calc_wall_x(params, iter, x);
 }
 

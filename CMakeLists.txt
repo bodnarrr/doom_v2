@@ -372,4 +372,4 @@ add_executable(doom_actual
         read_map.c
         route_events.c
         set_wall_color.c
-        wolf3d.h mouse_move.c draw_sprites.c)
+        wolf3d.h mouse_move.c draw_sprites.c draw_textured_wall.c)

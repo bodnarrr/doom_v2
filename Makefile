@@ -17,7 +17,8 @@ LIB = libftprintf.a
 SRCS =	add_perimeter_walls.c check_arguments.c check_event.c handle_error.c \
         handle_map_error.c height_for_column.c init_params.c init_position.c \
         init_sdl.c main.c make_calculations.c parse_map.c read_map.c \
-        route_events.c set_wall_color.c mouse_move.c draw_sprites.c
+        route_events.c set_wall_color.c mouse_move.c draw_sprites.c \
+        draw_textured_wall.c
 
 OBJECTS = $(SRCS:.c=.o)
 
