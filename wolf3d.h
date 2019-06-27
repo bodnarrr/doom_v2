@@ -44,25 +44,11 @@
 
 # define JUMP_HEIGHT 80
 
-# define SKY			0x2C6177
-# define GROUND			0x77672C
-
-# define HONEYFLOWER	0x4D1D77
-# define BLUMINE		0x1D5477
-# define ATOLL			0x0B7568
-# define BORDEAUX		0x5C0120
-# define DELRIO			0xB08D96
-# define CAMARONE		0x015C2A
-# define WASABI			0x7C8C2B
-# define LYNCH			0x5E7587
-# define JUNIPER		0x5E8587
-
 typedef struct	s_sdl
 {
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
-    double		perp_wall_dist;
     double		ray_dir_x;
     double		ray_dir_y;
     int			map_x;
@@ -87,6 +73,25 @@ typedef struct	s_draw_wall
 	int         pos;
 }				t_draw_wall;
 
+typedef struct 	s_draw_floor
+{
+	int 		wall_start;
+	int 		wall_end;
+	Uint32		*pixels;
+	double		floor_x;
+	double 		floor_y;
+	int 		pos;
+	double 		dist_wall;
+	double		dist_pl;
+	double		cur_dist;
+	double 		weight;
+	double 		cur_floor_x;
+	double 		cur_floor_y;
+	int 		floor_tex_x;
+	int 		floor_tex_y;
+	int 		ceil_pos;
+}				t_draw_floor;
+
 typedef struct	s_position
 {
 	double		pos_x;
@@ -99,6 +104,7 @@ typedef struct	s_position
 	double		rotate_speed;
 	int 		height;
 	double		jump;
+	double		perp_wall_dist;
 }				t_position;
 
 typedef struct	s_wolf
@@ -118,6 +124,7 @@ typedef struct	s_wolf
 	double 		ray_x;
 	double 		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
+	SDL_Surface	*ceil_tex;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -155,5 +162,6 @@ void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
 void			draw_sprites(t_wolf *params);
 //void            hud(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
+void			draw_textured_floor(int x, int height, t_wolf *params);
 
 #endif

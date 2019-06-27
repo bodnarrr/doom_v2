@@ -16,6 +16,7 @@ static void	prepare_textures(t_wolf *params)
 {
 	params->texture = IMG_Load("./media/textures/fall.jpg");
 	params->sprite.texture = IMG_Load("./media/pics/dreamcatcher.png");
+	params->ceil_tex = IMG_Load("./media/textures/sky_sq2.jps");
 	params->sprite.y = 4;
 	params->sprite.x = 2;
 }
