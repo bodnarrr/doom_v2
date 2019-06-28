@@ -12,8 +12,14 @@
 
 #include "wolf3d.h"
 
-void	set_wall_color(t_wolf *params, int value)
-{
-	(void)params;
-	(void)value;
-}
+//void	set_wall_color(t_wolf *params, int value)
+//{
+//	if (value == 1)
+//		params->wall_color = (Uint32)params->textures[0];
+//	else if (value == 2)
+//		params->wall_color = (Uint32)params->textures[1];
+//	else if (value == 3)
+//		params->wall_color = (Uint32)params->textures[2];
+//	else
+//		params->wall_color = 0xF00000L;
+//}

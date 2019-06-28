@@ -18,7 +18,7 @@ SRCS =	add_perimeter_walls.c check_arguments.c check_event.c handle_error.c \
         handle_map_error.c height_for_column.c init_params.c init_position.c \
         init_sdl.c main.c make_calculations.c parse_map.c read_map.c \
         route_events.c set_wall_color.c mouse_move.c draw_sprites.c \
-        draw_textured_wall.c draw_textured_floor.c
+        draw_textured_wall.c draw_textured_floor.c draw_text.c
 
 OBJECTS = $(SRCS:.c=.o)
 
@@ -26,13 +26,13 @@ FLAGS = -Wall -Wextra -Werror -O3
 
 CGFLAGS = -framework OpenGL -framework AppKit
 
-INCLUDES	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
-				-I./frameworks/SDL2_image.framework/Versions/A/Headers \
-				-F./frameworks/
+INCLUDES	=	-I/Library/Frameworks/SDL2.framework/Headers \
+                -I/Library/Frameworks/SDL2_image.framework/Headers \
+                -I/Library/Frameworks/SDL2_ttf.framework/Headers \
 
-FRAMEWORKS	=	-F./frameworks \
-				-rpath ./frameworks \
-				-framework OpenGL -framework AppKit -framework SDL2 -framework SDL2_image
+
+FRAMEWORKS = -F/Library/Frameworks -framework SDL2 \
+                -framework SDL2 -framework SDL2_image -framework SDL2_ttf
 
 HEADERS = *.h
 

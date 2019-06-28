@@ -61,9 +61,7 @@ void	draw_sprites(t_wolf *params)
 				Uint32 color = ((Uint32*)params->sprite.texture->pixels)[params->sprite.texture->w * texY + texX]; //get current color from the texture
 				if((color & 0x00FFFFFF) != 0)
 					((Uint32*)params->sdl.surface->pixels)[pos] = color; //paint pixel if it isn't black, black is the invisible color
-
 			}
 	}
-
 	SDL_UpdateWindowSurface(params->sdl.window);
 }

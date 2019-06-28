@@ -26,6 +26,10 @@ int			main(int ac, char **av)
 	init_position(&params);
 	make_calculations(&params);
 	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
+	{
 		check_event(params.sdl.event, &params);
+		draw_text(&params);
+	}
+
 	return (0);
 }

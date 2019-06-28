@@ -51,10 +51,10 @@ void			draw_textured_floor(int x, int height, t_wolf *params)
 		dr.floor_tex_x = (int)(dr.cur_floor_x * params->texture->w) % params->texture->w;
 		dr.floor_tex_y = (int)(dr.cur_floor_y * params->texture->h) % params->texture->h;
 		dr.pixels[dr.pos] = ((Uint32*)params->texture->pixels)[params->texture->w * dr.floor_tex_y + dr.floor_tex_x];
+		dr.pixels[dr.pos] = ((Uint32*)params->floor_tex->pixels)[params->floor_tex->w * dr.floor_tex_y + dr.floor_tex_x];;
 		dr.ceil_pos = x + (dr.wall_start * SCREEN_WIDTH);
-        dr.pixels[dr.ceil_pos] = ((Uint32*)params->texture->pixels)[params->texture->w * dr.floor_tex_y + dr.floor_tex_x];
+        dr.pixels[dr.ceil_pos] = ((Uint32*)params->ceil_tex->pixels)[params->ceil_tex->w * dr.floor_tex_y + dr.floor_tex_x];
 		dr.wall_start--;
 		dr.wall_end++;
-
 	}
 }

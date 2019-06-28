@@ -20,7 +20,7 @@
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
 # include <SDL2/SDL_ttf.h>
-# include <SDL2/SDL_mixer.h>
+//# include <SDL2/S>
 # include <math.h>
 
 # include <stdbool.h>
@@ -37,7 +37,7 @@
 # define MIN_ROTATE_SPEED 0
 # define MAX_ROTATE_SPEED 0.12
 
-# define TX_COUNT 9
+# define TX_COUNT 3
 
 # define SPEED_RIGHT -1.5
 # define SPEED_LEFT 1.5
@@ -49,6 +49,7 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
+//	Mix_Music	*sound;
     double		ray_dir_x;
     double		ray_dir_y;
     int			map_x;
@@ -119,12 +120,14 @@ typedef struct	s_wolf
 	int			side;
 	Uint32		wall_color;
 	SDL_Surface *texture;
+	SDL_Surface *textures[TX_COUNT];
 	t_sprite	sprite;
 	double 		wall_x;
 	double 		ray_x;
 	double 		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
 	SDL_Surface	*ceil_tex;
+	SDL_Surface	*floor_tex;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -163,5 +166,6 @@ void			draw_sprites(t_wolf *params);
 //void            hud(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
+void			draw_text(t_wolf *params);
 
 #endif
