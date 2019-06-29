@@ -19,9 +19,9 @@ static void		draw_sprites_text(t_wolf *params)
 	TTF_Font	*font;
 	SDL_Color	color;
 
-	sprites_rect = (SDL_Rect){900, SCREEN_HEIGHT - 62, 100, 50};
+	sprites_rect = (SDL_Rect){900, SCREEN_HEIGHT - 72, 100, 50};
 	color = (SDL_Color){0, 0, 0, 255};
-	font = TTF_OpenFont("./media/fonts/dark_uvenal_full.otf", 26);
+	font = TTF_OpenFont("./media/fonts/aladdin.ttf", 39);
 	if (font == NULL)
 		params->error = ft_strdup(SDL_GetError());
 	if (!(text_surface = TTF_RenderText_Solid(font, "Collection: X/X", color)))
@@ -39,9 +39,9 @@ static void		draw_jasmine_text(t_wolf *params)
 	TTF_Font	*font;
 	SDL_Color	color;
 
-	jasmin_rect = (SDL_Rect){500, SCREEN_HEIGHT - 70, 200, 100};
+	jasmin_rect = (SDL_Rect){500, SCREEN_HEIGHT - 72, 200, 100};
 	color = (SDL_Color){255, 255, 255, 255};
-	font = TTF_OpenFont("./media/fonts/dark_uvenal_full.otf", 39);
+	font = TTF_OpenFont("./media/fonts/aladdin.ttf", 39);
 	if (font == NULL)
 		params->error = ft_strdup(SDL_GetError());
 	if (!(text_surface = TTF_RenderText_Solid(font, "Find Jasmine!", color)))
