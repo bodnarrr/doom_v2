@@ -18,13 +18,17 @@ static void	prepare_textures(t_wolf *params)
 	params->sprite.texture = IMG_Load("./media/pics/parrot.png");
 	params->ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
 	params->floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
-//	params->sdl.sound = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
-//	Mix_PlayMusic(params->sdl.sound, -1);
+
+//	params->sdl.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
+
 
 	//
-	params->textures[0] = IMG_Load("./media/textures/fire_smart4.jpg");
+	params->textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
 	params->textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
 	params->textures[2] = IMG_Load("./media/textures/fire_smart2.jpg");
+//	params->textures[3] = IMG_Load("./media/textures/water.jpg");
+
+	params->hud.profile = IMG_Load("./media/pics/Aladdin.jpg");
 
 	params->sprite.y = 2;
 	params->sprite.x = 5;

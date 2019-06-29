@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = wolf3d
+NAME = doom-nukem
 
 LIB = libftprintf.a
 
@@ -32,7 +32,7 @@ INCLUDES	=	-I/Library/Frameworks/SDL2.framework/Headers \
 
 
 FRAMEWORKS = -F/Library/Frameworks -framework SDL2 \
-                -framework SDL2 -framework SDL2_image -framework SDL2_ttf
+             -framework SDL2 -framework SDL2_image -framework SDL2_ttf
 
 HEADERS = *.h
 
@@ -43,7 +43,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OBJECTS) $(HEADERS)
 	@gcc $(FLAGS) $(CGFLAGS) $(FRAMEWORKS) -o $@ -I. -I./libftprintf $(OBJECTS) $(LIB) $(INCLUDES)
-	@echo "\033[1;32mWolf3D is ready\033[0m"
+	@echo "\033[1;32mDoom-Nukem is ready\033[0m"
 
 $(LIB):
 	@make -C ./libftprintf/

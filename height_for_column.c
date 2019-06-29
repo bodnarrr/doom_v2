@@ -73,7 +73,7 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 		if (params->map[iter->map_y]
 			&& params->map[iter->map_y][iter->map_x] > 0)
 		{
-//			set_wall_color(params, params->map[iter->map_y][iter->map_x]);
+			params->tex_ind = params->map[iter->map_y][iter->map_x] - 1;
 			iter->hit = 1;
 		}
 	}

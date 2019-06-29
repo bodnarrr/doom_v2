@@ -14,19 +14,19 @@
 # define WOLF3D_H
 
 # include "libftprintf/libftprintf.h"
-//# include "./frameworks/SDL2/SDL.h"
-//# include "./frameworks/SDL2/SDL_events.h"
-//# include "./frameworks/SDL2/SDL_image.h"
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
+# include <math.h>
+# include <stdlib.h>
+
 # include <SDL2/SDL_ttf.h>
-//# include <SDL2/S>
+//# include <SDL2/SDL_mixer.h>
 # include <math.h>
 
 # include <stdbool.h>
 
-# define SCREEN_WIDTH 800
-# define SCREEN_HEIGHT 600
+# define SCREEN_WIDTH 1200
+# define SCREEN_HEIGHT 800
 # define TRUE 1
 # define FALSE 0
 # define READ_SIZE 32
@@ -49,7 +49,7 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
-//	Mix_Music	*sound;
+//	Mix_Music	*music;
     double		ray_dir_x;
     double		ray_dir_y;
     int			map_x;
@@ -62,6 +62,13 @@ typedef struct	s_sprite
     int 		x;
     int 		y;
 }				t_sprite;
+
+typedef struct	s_hud
+{
+	SDL_Surface	*profile;
+	int 		x;
+	int 		y;
+}				t_hud;
 
 typedef struct	s_draw_wall
 {
@@ -121,6 +128,8 @@ typedef struct	s_wolf
 	Uint32		wall_color;
 	SDL_Surface *texture;
 	SDL_Surface *textures[TX_COUNT];
+	int 		tex_ind;
+	t_hud		hud;
 	t_sprite	sprite;
 	double 		wall_x;
 	double 		ray_x;
@@ -163,7 +172,7 @@ void			add_perimeter_walls(int **map);
 void			set_wall_color(t_wolf *params, int value);
 void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
 void			draw_sprites(t_wolf *params);
-//void            hud(t_wolf *params);
+void            hud(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
 void			draw_text(t_wolf *params);
