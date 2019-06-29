@@ -10,69 +10,69 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 void	draw_sprites(t_wolf *params)
 {
-	double	spriteX;
-	double	spriteY;
-	double	invDet;
-	double	transformX;
-	double	transformY;
-	int		spriteScreenX;
-	int		spriteHeight;
-	int		drawStartY;
-	int		drawEndY;
-	int		spriteWidth;
-	int		drawStartX;
-	int		drawEndX;
+	double	spr_x;
+	double	spr_y;
+	double	inv_det;
+	double	transf_x;
+	double	transf_y;
+	int		spr_scr_x;
+	int		spr_h;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		spr_w;
+	int		draw_start_x;
+	int		draw_end_x;
 	int		i;
 	int		j;
-	int		texX;
-	int		texY;
+	int		tex_x;
+	int		tex_y;
 	int		pos;
 	int		d;
 	Uint32	color;
 
-	spriteX = params->sprite.x - params->pos_info.pos_x;
-	spriteY = params->sprite.y - params->pos_info.pos_y;
-	invDet = 1.0 / (params->pos_info.plane_x * params->pos_info.dir_y
+	spr_x = params->sprite.x - params->pos_info.pos_x;
+	spr_y = params->sprite.y - params->pos_info.pos_y;
+	inv_det = 1.0 / (params->pos_info.plane_x * params->pos_info.dir_y
 			- params->pos_info.dir_x * params->pos_info.plane_y);
-	transformX = invDet * (params->pos_info.dir_y * spriteX
-								- params->pos_info.dir_x * spriteY);
-	transformY = invDet * (-params->pos_info.plane_y * spriteX
-								+ params->pos_info.plane_x * spriteY);
-	spriteScreenX = (int)((SCREEN_WIDTH / 2) * (1 + transformX / transformY));
-	spriteHeight = abs((int)(SCREEN_HEIGHT / (transformY)));
-	drawStartY = -spriteHeight / 2 + SCREEN_HEIGHT / 2;
-	if (drawStartY < 0)
-		drawStartY = 0;
-	drawEndY = spriteHeight / 2 + SCREEN_HEIGHT / 2;
-	if (drawEndY >= SCREEN_HEIGHT)
-		drawEndY = SCREEN_HEIGHT - 1;
-	spriteWidth = abs((int)(SCREEN_HEIGHT / (transformY)));
-	drawStartX = -spriteWidth / 2 + spriteScreenX;
-	if (drawStartX < 0)
-		drawStartX = 0;
-	drawEndX = spriteWidth / 2 + spriteScreenX;
-	if (drawEndX >= SCREEN_WIDTH)
-		drawEndX = SCREEN_WIDTH - 1;
-	i = drawStartX;
-	while (i < drawEndX)
+	transf_x = inv_det * (params->pos_info.dir_y * spr_x
+								- params->pos_info.dir_x * spr_y);
+	transf_y = inv_det * (-params->pos_info.plane_y * spr_x
+								+ params->pos_info.plane_x * spr_y);
+	spr_scr_x = (int)((SCREEN_WIDTH / 2) * (1 + transf_x / transf_y));
+	spr_h = abs((int)(SCREEN_HEIGHT / (transf_y)));
+	draw_start_y = -spr_h / 2 + SCREEN_HEIGHT / 2;
+	if (draw_start_y < 0)
+		draw_start_y = 0;
+	draw_end_y = spr_h / 2 + SCREEN_HEIGHT / 2;
+	if (draw_end_y >= SCREEN_HEIGHT)
+		draw_end_y = SCREEN_HEIGHT - 1;
+	spr_w = abs((int)(SCREEN_HEIGHT / (transf_y)));
+	draw_start_x = -spr_w / 2 + spr_scr_x;
+	if (draw_start_x < 0)
+		draw_start_x = 0;
+	draw_end_x = spr_w / 2 + spr_scr_x;
+	if (draw_end_x >= SCREEN_WIDTH)
+		draw_end_x = SCREEN_WIDTH - 1;
+	i = draw_start_x;
+	while (i < draw_end_x)
 	{
-		texX = (int)(256 * (i - (-spriteWidth / 2 + spriteScreenX))
-							* params->sprite.texture->w / spriteWidth) / 256;
-		if (transformY > 0 && i > 0 && i < SCREEN_WIDTH
-							&& transformY < params->z_buffer[i])
+		tex_x = (int)(256 * (i - (-spr_w / 2 + spr_scr_x))
+							* params->sprite.texture->w / spr_w) / 256;
+		if (transf_y > 0 && i > 0 && i < SCREEN_WIDTH
+							&& transf_y < params->z_buffer[i])
 		{
-			j = drawStartY;
-			while (j < drawEndY)
+			j = draw_start_y;
+			while (j < draw_end_y)
 			{
 				pos = i + (j * SCREEN_WIDTH);
-				d = j * 256 - SCREEN_HEIGHT * 128 + spriteHeight * 128;
-				texY = ((d * params->sprite.texture->h) / spriteHeight) / 256;
+				d = j * 256 - SCREEN_HEIGHT * 128 + spr_h * 128;
+				tex_y = ((d * params->sprite.texture->h) / spr_h) / 256;
 				color = ((Uint32*)params->sprite.texture->pixels)
-						[params->sprite.texture->w * texY + texX];
+						[params->sprite.texture->w * tex_y + tex_x];
 				if ((color & 0x00FFFFFF) != 0)
 					((Uint32*)params->sdl.surface->pixels)[pos] = color;
 				j++;

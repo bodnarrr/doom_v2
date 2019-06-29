@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void		draw_sprites_text(t_wolf *params)
 {
@@ -59,7 +59,7 @@ void			draw_hud(t_wolf *params)
 	SDL_Rect	logo_rect;
 
 	main_rect = (SDL_Rect){0, 700, SCREEN_WIDTH, 100};
-	SDL_BlitSurface(params->hud.main_HUD, NULL, params->sdl.surface,
+	SDL_BlitSurface(params->hud.main_hud, NULL, params->sdl.surface,
 																&main_rect);
 	face_rect = (SDL_Rect){100, SCREEN_HEIGHT - 100, 100, 100};
 	SDL_BlitSurface(params->hud.face, NULL, params->sdl.surface, &face_rect);
