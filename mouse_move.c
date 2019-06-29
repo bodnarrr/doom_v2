@@ -2,7 +2,7 @@
 // Created by Andrii Bodnar on 2019-06-23.
 //
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void	horizontal_rotate(bool is_right, t_wolf *params)
 {

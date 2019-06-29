@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 //void	set_wall_color(t_wolf *params, int value)
 //{

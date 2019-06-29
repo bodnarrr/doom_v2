@@ -2,7 +2,7 @@
 // Created by Olenka on 2019-06-28.
 //
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 void	draw_text(t_wolf *params)
 {
@@ -24,13 +24,3 @@ void	draw_text(t_wolf *params)
 	SDL_FreeSurface(text_surface);
 	SDL_UpdateWindowSurface(params->sdl.window);
 }
-
-
-//void	hud(t_wolf *params)
-//{
-//	SDL_Rect dest = {100, SCREEN_HEIGHT - 100, 100, 100};
-//	draw_text(params);
-//	SDL_BlitSurface(params->hud.profile, NULL, params->sdl.surface, &dest);
-//	SDL_UpdateWindowSurface(params->sdl.window);
-//}
-

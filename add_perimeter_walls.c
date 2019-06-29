@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static bool	check_border(int y, int x, int **map)
 {

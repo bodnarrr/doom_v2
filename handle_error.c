@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 int	handle_error(t_wolf *params)
 {

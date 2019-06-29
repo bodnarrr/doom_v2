@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void	draw_column(int x, int height, t_wolf *params)
 {

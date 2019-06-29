@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static int	*line_to_int_arr(char *line)
 {

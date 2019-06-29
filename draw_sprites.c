@@ -2,7 +2,7 @@
 // Created by Andrii Bodnar on 2019-06-26.
 //
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 void	draw_sprites(t_wolf *params)
 {

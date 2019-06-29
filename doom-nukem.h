@@ -163,7 +163,7 @@ bool			read_map(t_wolf *params, char *input);
 int				handle_map_error(t_wolf *params);
 bool			init_sdl(t_wolf *params);
 void			init_position(t_wolf *params);
-void			check_event(SDL_Event event, t_wolf *params);
+bool			check_event(SDL_Event event, t_wolf *params);
 void			make_calculations(t_wolf *params);
 int				height_for_column(int x, t_wolf *params);
 void			route_events(SDL_Scancode code, t_wolf *params);
@@ -176,5 +176,6 @@ void            hud(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
 void			draw_text(t_wolf *params);
+void			draw_hud(t_wolf *params);
 
 #endif

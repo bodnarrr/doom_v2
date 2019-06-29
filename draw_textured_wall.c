@@ -2,7 +2,7 @@
 // Created by Olenka on 2019-06-27.
 //
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 void	draw_textured_wall(int x, int height, t_wolf *params)
 {

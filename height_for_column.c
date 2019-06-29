@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void	calc_cam_ray(int x, t_wolf *params, t_iterations *iter)
 {

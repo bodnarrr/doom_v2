@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 int			main(int ac, char **av)
 {
@@ -28,11 +28,11 @@ int			main(int ac, char **av)
 	make_calculations(&params);
 	Mix_PlayMusic(params.sdl.music, 1);
 	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
-	{
-		check_event(params.sdl.event, &params);
-//		hud(&params);
-		draw_text(&params);
-	}
-
+		if (check_event(params.sdl.event, &params))
+		{
+			make_calculations(&params);
+			draw_text(&params);
+			draw_hud(&params);
+		}
 	return (0);
 }

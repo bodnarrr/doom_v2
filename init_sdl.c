@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void	prepare_textures(t_wolf *params)
 {
@@ -21,14 +21,12 @@ static void	prepare_textures(t_wolf *params)
 
 	params->sdl.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
 
-
-	//
 	params->textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
 	params->textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
 	params->textures[2] = IMG_Load("./media/textures/fire_smart2.jpg");
 //	params->textures[3] = IMG_Load("./media/textures/water.jpg");
 
-	params->hud.profile = IMG_Load("./media/pics/Aladdin.jpg");
+	params->hud.profile = IMG_Load("./media/pics/Aladdin.png");
 
 	params->sprite.y = 2;
 	params->sprite.x = 5;

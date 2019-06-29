@@ -1317,4 +1317,4 @@ add_executable(Doom
         read_map.c
         route_events.c
         set_wall_color.c
-        wolf3d.h)
+        doom-nukem.h draw_hud.c)

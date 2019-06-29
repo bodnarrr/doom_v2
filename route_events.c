@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void	increase_rotate_speed(bool is_increasing, t_wolf *params)
 {

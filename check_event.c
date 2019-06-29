@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static bool	is_active_event(SDL_Scancode code)
 {
@@ -27,34 +27,40 @@ static bool	is_active_event(SDL_Scancode code)
 	return (FALSE);
 }
 
-void		check_event(SDL_Event event, t_wolf *params)
+bool	check_event(SDL_Event event, t_wolf *params)
 {
 	SDL_Scancode	code;
+	int				i;
 
 	code = event.key.keysym.scancode;
 	if ((event.type == SDL_QUIT) || (event.type == SDL_KEYDOWN
 		&& code == SDL_SCANCODE_ESCAPE))
+	{
 		params->is_working = 0;
+		return (true);
+	}
 	else if (event.type == SDL_KEYDOWN
 				&& is_active_event(code))
 	{
 		route_events(code, params);
-		make_calculations(params);
-		draw_sprites(params);
+		return (true);
 	}
 	else if (event.type == SDL_MOUSEMOTION)
 	{
 		route_mouse_move(event.motion, params);
-		make_calculations(params);
-		draw_sprites(params);
+		return (true);
 	}
 	if (params->pos_info.jump > 0)
 	{
-		int i = -1;
+		i = -1;
 		while (++i < JUMP_HEIGHT)
 		{
 			params->pos_info.jump -= 1;
 			make_calculations(params);
+			draw_text(params);
+			draw_hud(params);
 		}
+		return (true);
 	}
+	return (false);
 }

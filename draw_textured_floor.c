@@ -2,7 +2,7 @@
 // Created by Olenka on 2019-06-27.
 //
 
-#include "wolf3d.h"
+#include "doom-nukem.h"
 
 static void		check_floor_dir(t_wolf *params, t_draw_floor *dr)
 {
