@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wolf3d.h                                           :+:      :+:    :+:   */
+/*   doom-nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:46:16 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 15:51:24 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_NUKEM_H
+# define DOOM_NUKEM_H
 
 # include "libftprintf/libftprintf.h"
-# include "frameworks/SDL2/SDL.h"
-# include "frameworks/SDL2/SDL_image.h"
-# include "frameworks/SDL2/SDL_ttf.h"
-# include "frameworks/SDL2/SDL_mixer.h"
+# include "frameworks/SDL2.framework/Headers/SDL.h"
+# include "frameworks/SDL2_image.framework/Versions/A/Headers/SDL_image.h"
+# include "frameworks/SDL2_ttf.framework/Versions/A/Headers/SDL_ttf.h"
+# include "frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
 # include <math.h>
 # include <stdlib.h>
 

@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abodnar <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 12:17:53 by abodnar           #+#    #+#              #
-#    Updated: 2018/05/22 12:21:33 by abodnar          ###   ########.fr        #
+#    Updated: 2019/06/29 15:30:38 by vonischu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = doom-nukem
 
@@ -27,24 +28,26 @@ FLAGS = -Wall -Wextra -Werror -O3
 
 CGFLAGS = -framework OpenGL -framework AppKit
 
-INCLUDES = -I./frameworks/SDL2.framework/Versions/A/Headers \
-           -F./frameworks/
+INCLUDES = 		-I frameworks/SDL2.framework/Versions/A/Headers \
+				-I frameworks/SDL2_ttf.framework/Versions/A/Headers \
+				-I frameworks/SDL2_image.framework/Versions/A/Headers \
+				-I frameworks/SDL2_mixer.framework/Versions/A/Headers \
+# 				-F./frameworks/
 
-FRAMEWORKS = -F./frameworks \
-               -rpath ./frameworks \
-               -framework OpenGL -framework AppKit -framework SDL2 \
-               -framework SDL2_image -framework SDL2_ttf -framework SDL2_mixer
+FRAMEWORKS	=	-F ./frameworks \
+				-rpath @loader_path/frameworks \
+				-framework SDL2 -framework SDL2_image -framework SDL2_ttf -framework SDL2_mixer
 
 HEADERS = *.h
 
 all: $(NAME)
 
 %.o : %.c
-	@gcc $(FLAGS) -I. -I./libftprintf $(FLAGS) -c $< -o $@
+	@gcc $(FLAGS) -I. -I./libftprintf $(FLAGS) -c $< -o $@ $(INCLUDES)
 
 $(NAME): $(LIB) $(OBJECTS) $(HEADERS)
-	@gcc $(FLAGS) $(CGFLAGS) $(FRAMEWORKS) -o $@ -I. -I./libftprintf $(OBJECTS) $(LIB) $(INCLUDES)
-	@echo "\033[1;32mDoom-Nukem is ready\033[0m"
+	@gcc $(FLAGS) $(CGFLAGS) $(FRAMEWORKS) -o $@ -I. -I./libftprintf $(OBJECTS) $(LIB) 
+	@echo "\033[1;32mWolf3D is ready\033[0m"
 
 $(LIB):
 	@make -C ./libftprintf/
