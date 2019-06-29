@@ -33,8 +33,8 @@ void			draw_textured_floor(int x, int height, t_wolf *params)
 	t_draw_floor	dr;
 
 	ft_bzero(&dr, sizeof(t_draw_floor));
-	dr.wall_start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.height + (int) params->pos_info.jump;
-	dr.wall_end = (SCREEN_HEIGHT + height) / 2 + params->pos_info.height + (int) params->pos_info.jump;
+	dr.wall_start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.height;
+	dr.wall_end = (SCREEN_HEIGHT + height) / 2 + params->pos_info.height;
 	dr.pixels = params->sdl.surface->pixels;
 	check_floor_dir(params, &dr);
 	dr.dist_wall = params->pos_info.perp_wall_dist;

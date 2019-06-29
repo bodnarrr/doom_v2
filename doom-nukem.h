@@ -6,7 +6,7 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 18:14:53 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/29 21:09:26 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
-	int			v_rotate;
 	int 		height;
-	double		jump;
 	double		perp_wall_dist;
 }				t_position;
 
@@ -125,6 +123,7 @@ typedef struct	s_sound
 
 typedef struct	s_wolf
 {
+	int			is_sprite;
 	t_sdl		sdl;
 	t_position	pos_info;
 	int			**map;
@@ -147,6 +146,8 @@ typedef struct	s_wolf
 	SDL_Surface	*floor_tex;
 	int 		sprite_amount;
 	t_sound		sounds;
+	bool		squat;
+	bool		fly;
 }				t_wolf;
 
 typedef struct	s_iteration

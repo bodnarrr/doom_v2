@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:43:30 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 20:59:12 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ static bool	is_active_event(SDL_Scancode code)
 		|| code == SDL_SCANCODE_DOWN
 		|| code == SDL_SCANCODE_LEFT
 		|| code == SDL_SCANCODE_RIGHT
-		|| code == SDL_SCANCODE_SPACE)
+		|| code == SDL_SCANCODE_SPACE
+		|| code == SDL_SCANCODE_LSHIFT
+		|| code == SDL_SCANCODE_LCTRL)
 		return (TRUE);
 	return (FALSE);
 }
@@ -30,7 +32,6 @@ static bool	is_active_event(SDL_Scancode code)
 bool	check_event(SDL_Event event, t_wolf *params)
 {
 	SDL_Scancode	code;
-	int				i;
 
 	code = event.key.keysym.scancode;
 	if ((event.type == SDL_QUIT) || (event.type == SDL_KEYDOWN
@@ -48,19 +49,6 @@ bool	check_event(SDL_Event event, t_wolf *params)
 	else if (event.type == SDL_MOUSEMOTION)
 	{
 		route_mouse_move(event.motion, params);
-		return (true);
-	}
-	if (params->pos_info.jump > 0)
-	{
-		Mix_PlayChannel(-1, params->sounds.sound1, 0);
-		i = -1;
-		while (++i < JUMP_HEIGHT)
-		{
-			params->pos_info.jump -= 1;
-			make_calculations(params);
-			draw_hud(params);
-			SDL_UpdateWindowSurface(params->sdl.window);
-		}
 		return (true);
 	}
 	return (false);

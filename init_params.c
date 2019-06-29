@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_params.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:45:13 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:45:14 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 21:02:39 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,6 @@ void	init_parameters(t_wolf *params)
 	params->wall_x = 0.0;
 	params->ray_x = 0;
 	params->ray_y = 0;
+	params->squat = FALSE;
+	params->fly = FALSE;
 }

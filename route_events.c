@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   route_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 18:03:57 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 18:03:58 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 21:21:39 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,105 @@ static void	move_forward_back(bool is_move_forward, t_wolf *params)
 		params->pos_info.pos_x = new_x;
 }
 
+void		jump(t_wolf *params)
+{
+	int height;
+	int delta_height;
+
+	if (!params->squat && !params->fly)
+	height = params->pos_info.height;
+	delta_height = 0;
+	while (delta_height < 100)
+	{
+		params->pos_info.height = height + delta_height;
+		make_calculations(params);
+		draw_sprites(params);
+		draw_hud(params);
+		SDL_UpdateWindowSurface(params->sdl.window);
+		delta_height += 10;
+	}
+	while (delta_height >= 0)
+	{
+		params->pos_info.height = height + delta_height;
+		make_calculations(params);
+		draw_sprites(params);
+		draw_hud(params);
+		SDL_UpdateWindowSurface(params->sdl.window);
+		delta_height -= 10;
+	}
+}
+
+void		squat(t_wolf *params)
+{
+	int i;
+	int height;
+	int delta_height;
+
+	i = 0;
+	height = params->pos_info.height;
+	delta_height = 200;
+	if (!params->squat)
+	{
+		params->squat = TRUE;
+		if (params->fly)
+		{
+			delta_height += 200;
+			params->fly = FALSE;
+		}
+		while (i < delta_height)
+		{
+			params->pos_info.height = height - i;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+			i += 10;
+		}
+	}
+	else
+	{
+		params->squat = FALSE;
+		while (i < delta_height)
+		{
+			params->pos_info.height = height + i;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+			i += 10;
+		}
+	}
+}
+
+// void		fly(t_wolf *params)
+// {
+// 	params->pos_info.height = 0;
+// 	if (!params->fly)
+// 	{
+// 		while (params->pos_info.height < 200)
+// 		{
+// 			params->pos_info.height += 25;
+// 			make_calculations(params);
+// 			draw_sprites(params);
+// 			draw_hud(params);
+// 			SDL_UpdateWindowSurface(params->sdl.window);
+// 		}
+// 		params->fly = TRUE;
+// 	}
+// 	else
+// 	{
+// 		while (params->pos_info.height > 0)
+// 		{
+// 			params->pos_info.height -= 25;
+// 			make_calculations(params);
+// 			draw_sprites(params);
+// 			draw_hud(params);
+// 			SDL_UpdateWindowSurface(params->sdl.window);
+// 		}
+// 		params->fly = FALSE;
+// 	}
+// }
+
 void		route_events(SDL_Scancode code, t_wolf *params)
 {
 	if (code == SDL_SCANCODE_W)
@@ -99,5 +198,9 @@ void		route_events(SDL_Scancode code, t_wolf *params)
 	else if (code == SDL_SCANCODE_LEFT)
 		increase_rotate_speed(FALSE, params);
 	else if (code == SDL_SCANCODE_SPACE)
-		params->pos_info.jump = JUMP_HEIGHT;
+		jump(params);
+	else if (code == SDL_SCANCODE_LSHIFT)
+		squat(params);
+	// else if (code == SDL_SCANCODE_LCTRL)
+	// 	fly(params);
 }
