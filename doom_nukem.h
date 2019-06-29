@@ -49,23 +49,22 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
-
-    double		ray_dir_x;
-    double		ray_dir_y;
-    int			map_x;
-    int			map_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
 }				t_sdl;
 
 typedef struct	s_sprite
 {
-    SDL_Surface	*texture;
-    int 		x;
-    int 		y;
+	SDL_Surface	*texture;
+	int			x;
+	int			y;
 }				t_sprite;
 
 typedef struct	s_hud
 {
-	SDL_Surface	*main_HUD;
+	SDL_Surface	*main_hud;
 	SDL_Surface	*face;
 	SDL_Surface	*logo;
 }				t_hud;
@@ -73,31 +72,31 @@ typedef struct	s_hud
 typedef struct	s_draw_wall
 {
 	int			wall_start;
-	int 		wall_end;
+	int			wall_end;
 	Uint32		*pixels;
-	int 		tex_x;
-	int 		tex_y;
-	int 		d;
-	int         pos;
+	int			tex_x;
+	int			tex_y;
+	int			d;
+	int			pos;
 }				t_draw_wall;
 
-typedef struct 	s_draw_floor
+typedef struct	s_draw_floor
 {
-	int 		wall_start;
-	int 		wall_end;
+	int			wall_start;
+	int			wall_end;
 	Uint32		*pixels;
 	double		floor_x;
-	double 		floor_y;
-	int 		pos;
-	double 		dist_wall;
+	double		floor_y;
+	int			pos;
+	double		dist_wall;
 	double		dist_pl;
 	double		cur_dist;
-	double 		weight;
-	double 		cur_floor_x;
-	double 		cur_floor_y;
-	int 		floor_tex_x;
-	int 		floor_tex_y;
-	int 		ceil_pos;
+	double		weight;
+	double		cur_floor_x;
+	double		cur_floor_y;
+	int			floor_tex_x;
+	int			floor_tex_y;
+	int			ceil_pos;
 }				t_draw_floor;
 
 typedef struct	s_position
@@ -110,7 +109,9 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
-	int 		height;
+	int			v_rotate;
+	int			height;
+	double		jump;
 	double		perp_wall_dist;
 }				t_position;
 
@@ -135,16 +136,16 @@ typedef struct	s_wolf
 	Uint32		wall_color;
 	SDL_Surface *texture;
 	SDL_Surface *textures[TX_COUNT];
-	int 		tex_ind;
+	int			tex_ind;
 	t_hud		hud;
 	t_sprite	sprite;
-	double 		wall_x;
-	double 		ray_x;
-	double 		ray_y;
+	double		wall_x;
+	double		ray_x;
+	double		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
 	SDL_Surface	*ceil_tex;
 	SDL_Surface	*floor_tex;
-	int 		sprite_amount;
+	int			sprite_amount;
 	t_sound		sounds;
 	bool		squat;
 	bool		fly;
