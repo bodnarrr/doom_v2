@@ -19,7 +19,7 @@ static void		draw_sprites_text(t_wolf *params)
 	TTF_Font	*font;
 	SDL_Color	color;
 
-	sprites_rect = (SDL_Rect){900, SCREEN_HEIGHT - 72, 100, 50};
+	sprites_rect = (SDL_Rect){900, SCREEN_HEIGHT - 72, 100, 60};
 	color = (SDL_Color){0, 0, 0, 255};
 	font = TTF_OpenFont("./media/fonts/aladdin.ttf", 39);
 	if (font == NULL)
@@ -39,7 +39,7 @@ static void		draw_jasmine_text(t_wolf *params)
 	TTF_Font	*font;
 	SDL_Color	color;
 
-	jasmin_rect = (SDL_Rect){500, SCREEN_HEIGHT - 72, 200, 100};
+	jasmin_rect = (SDL_Rect){500, SCREEN_HEIGHT - 72, 200, 120};
 	color = (SDL_Color){255, 255, 255, 255};
 	font = TTF_OpenFont("./media/fonts/aladdin.ttf", 39);
 	if (font == NULL)
