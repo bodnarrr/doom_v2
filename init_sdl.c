@@ -26,7 +26,8 @@ static void	prepare_textures(t_wolf *params)
 	params->textures[2] = IMG_Load("./media/textures/fire_smart2.jpg");
 //	params->textures[3] = IMG_Load("./media/textures/water.jpg");
 
-	params->hud.profile = IMG_Load("./media/pics/Aladdin.png");
+	params->hud.main_HUD = IMG_Load("./media/pics/hud.jpg");
+	params->hud.face = IMG_Load("./media/pics/Aladdin.png");
 
 	params->sprite.y = 2;
 	params->sprite.x = 5;

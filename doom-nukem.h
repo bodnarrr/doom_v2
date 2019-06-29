@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#ifndef DOOM_NUKEM_H
+# define DOOM_NUKEM_H
 
 # include "libftprintf/libftprintf.h"
 # include "frameworks/SDL2/SDL.h"
@@ -65,7 +65,8 @@ typedef struct	s_sprite
 
 typedef struct	s_hud
 {
-	SDL_Surface	*profile;
+	SDL_Surface	*main_HUD;
+	SDL_Surface	*face;
 	int 		x;
 	int 		y;
 }				t_hud;

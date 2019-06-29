@@ -31,5 +31,4 @@ void		make_calculations(t_wolf *params)
 		wall_height = height_for_column(i, params);
 		draw_column(i, wall_height, params);
 	}
-	SDL_UpdateWindowSurface(params->sdl.window);
 }

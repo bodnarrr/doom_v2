@@ -63,5 +63,4 @@ void	draw_sprites(t_wolf *params)
 					((Uint32*)params->sdl.surface->pixels)[pos] = color; //paint pixel if it isn't black, black is the invisible color
 			}
 	}
-	SDL_UpdateWindowSurface(params->sdl.window);
 }

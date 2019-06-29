@@ -26,13 +26,17 @@ int			main(int ac, char **av)
 		return (handle_error(&params));
 	init_position(&params);
 	make_calculations(&params);
+	draw_hud(&params);
+	draw_text(&params);
 	Mix_PlayMusic(params.sdl.music, 1);
 	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
 		if (check_event(params.sdl.event, &params))
 		{
 			make_calculations(&params);
-			draw_text(&params);
+			draw_sprites(&params);
 			draw_hud(&params);
+			draw_text(&params);
+			SDL_UpdateWindowSurface(params.sdl.window);
 		}
 	return (0);
 }
