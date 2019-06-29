@@ -19,7 +19,7 @@ SRCS =	add_perimeter_walls.c check_arguments.c check_event.c handle_error.c \
         handle_map_error.c height_for_column.c init_params.c init_position.c \
         init_sdl.c main.c make_calculations.c parse_map.c read_map.c \
         route_events.c set_wall_color.c mouse_move.c draw_sprites.c \
-        draw_textured_wall.c draw_textured_floor.c draw_text.c \
+        draw_textured_wall.c draw_textured_floor.c \
         draw_hud.c
 
 OBJECTS = $(SRCS:.c=.o)
@@ -32,7 +32,6 @@ INCLUDES = 		-I frameworks/SDL2.framework/Versions/A/Headers \
 				-I frameworks/SDL2_ttf.framework/Versions/A/Headers \
 				-I frameworks/SDL2_image.framework/Versions/A/Headers \
 				-I frameworks/SDL2_mixer.framework/Versions/A/Headers \
-# 				-F./frameworks/
 
 FRAMEWORKS	=	-F ./frameworks \
 				-rpath @loader_path/frameworks \
