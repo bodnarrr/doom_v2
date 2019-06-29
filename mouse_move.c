@@ -33,10 +33,10 @@ static void	vertical_rotate(bool is_up, t_wolf *params)
 	params->pos_info.height += delta;
 }
 
-void		route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params)
+void		route_mouse_move(t_wolf *params)
 {
-	if (event.xrel != 0)
-		horizontal_rotate(event.xrel > 0, params);
-	if (event.yrel != 0)
-		vertical_rotate(event.yrel > 0, params);
+	if (params->move_ev.code.motion.xrel != 0)
+		horizontal_rotate(params->move_ev.code.motion.xrel > 0, params);
+	if (params->move_ev.code.motion.yrel != 0)
+		vertical_rotate(params->move_ev.code.motion.yrel > 0, params);
 }

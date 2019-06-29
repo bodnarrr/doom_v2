@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 21:43:05 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/29 21:47:44 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 
 typedef	struct	s_move
 {
+	SDL_Event	code;
 	int			ws;
 	int			ad;
 	int			mm;
@@ -188,7 +189,7 @@ int				height_for_column(int x, t_wolf *params);
 void			route_events(t_wolf *params);
 void			parse_map(t_wolf *params, char *raw_map);
 void			add_perimeter_walls(int **map);
-void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
+void			route_mouse_move(t_wolf *params);
 void			draw_sprites(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);

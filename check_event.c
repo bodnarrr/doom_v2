@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 21:43:26 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/29 21:52:00 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,30 +38,29 @@ void	key_up(int key, t_wolf *params)
 
 bool	check_event(t_wolf *params)
 {
-	SDL_Event	code;
 	int				i;
 
-	if (SDL_PollEvent(&code) != 0)
+	if (SDL_PollEvent(&params->move_ev.code) != 0)
 	{
-	if ((code.type == SDL_QUIT) || (code.type == SDL_KEYDOWN
-		&& code.key.keysym.sym == SDLK_ESCAPE))
+	if ((params->move_ev.code.type == SDL_QUIT) || (params->move_ev.code.type == SDL_KEYDOWN
+		&& params->move_ev.code.key.keysym.sym == SDLK_ESCAPE))
 	{
 		params->is_working = 0;
 		return (true);
 	}
-	else if (code.type == SDL_KEYDOWN)
+	else if (params->move_ev.code.type == SDL_KEYDOWN)
 	{
-		key_down(code.key.keysym.sym, params);
+		key_down(params->move_ev.code.key.keysym.sym, params);
 		return (true);
 	}
-	else if (code.type == SDL_KEYUP)
+	else if (params->move_ev.code.type == SDL_KEYUP)
 	{
-		key_up(code.key.keysym.sym, params);
+		key_up(params->move_ev.code.key.keysym.sym, params);
 		return (true);
 	}
-	else if (code.type == SDL_MOUSEMOTION)
+	else if (params->move_ev.code.type == SDL_MOUSEMOTION)
 	{
-		route_mouse_move(code.motion, params);
+		route_mouse_move(params);
 		return (true);
 	}
 	if (params->pos_info.jump > 0)
