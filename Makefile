@@ -6,7 +6,7 @@
 #    By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/16 12:17:53 by abodnar           #+#    #+#              #
-#    Updated: 2019/06/29 15:30:38 by vonischu         ###   ########.fr        #
+#    Updated: 2019/06/29 20:13:12 by vonischu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ INCLUDES = 		-I frameworks/SDL2.framework/Versions/A/Headers \
 				-I frameworks/SDL2_ttf.framework/Versions/A/Headers \
 				-I frameworks/SDL2_image.framework/Versions/A/Headers \
 				-I frameworks/SDL2_mixer.framework/Versions/A/Headers \
+				-F ./frameworks 
 
 FRAMEWORKS	=	-F ./frameworks \
 				-rpath @loader_path/frameworks \

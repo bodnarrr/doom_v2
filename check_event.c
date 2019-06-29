@@ -3,51 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   check_event.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:43:30 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 21:43:26 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "doom-nukem.h"
 
-static bool	is_active_event(SDL_Scancode code)
+void	key_down(int key, t_wolf *params)
 {
-	if (code == SDL_SCANCODE_W
-		|| code == SDL_SCANCODE_A
-		|| code == SDL_SCANCODE_S
-		|| code == SDL_SCANCODE_D
-		|| code == SDL_SCANCODE_UP
-		|| code == SDL_SCANCODE_DOWN
-		|| code == SDL_SCANCODE_LEFT
-		|| code == SDL_SCANCODE_RIGHT
-		|| code == SDL_SCANCODE_SPACE)
-		return (TRUE);
-	return (FALSE);
+	if (key == SDLK_UP || key == SDLK_w)
+		params->move_ev.ws = 1;
+	else if (key == SDLK_DOWN || key == SDLK_s)
+		params->move_ev.ws = -1;
+	else if (key == SDLK_RIGHT || key == SDLK_d)
+		params->move_ev.ad = -1;
+	else if (key == SDLK_LEFT || key == SDLK_a)
+		params->move_ev.ad = 1;
 }
 
-bool	check_event(SDL_Event event, t_wolf *params)
+void	key_up(int key, t_wolf *params)
 {
-	SDL_Scancode	code;
+	if (key == SDLK_UP || key == SDLK_w)
+		params->move_ev.ws = 0;
+	else if (key == SDLK_DOWN || key == SDLK_s)
+		params->move_ev.ws = 0;
+	else if (key == SDLK_RIGHT || key == SDLK_d)
+		params->move_ev.ad = 0;
+	else if (key == SDLK_LEFT || key == SDLK_a)
+		params->move_ev.ad = 0;
+}
+
+bool	check_event(t_wolf *params)
+{
+	SDL_Event	code;
 	int				i;
 
-	code = event.key.keysym.scancode;
-	if ((event.type == SDL_QUIT) || (event.type == SDL_KEYDOWN
-		&& code == SDL_SCANCODE_ESCAPE))
+	if (SDL_PollEvent(&code) != 0)
+	{
+	if ((code.type == SDL_QUIT) || (code.type == SDL_KEYDOWN
+		&& code.key.keysym.sym == SDLK_ESCAPE))
 	{
 		params->is_working = 0;
 		return (true);
 	}
-	else if (event.type == SDL_KEYDOWN
-				&& is_active_event(code))
+	else if (code.type == SDL_KEYDOWN)
 	{
-		route_events(code, params);
+		key_down(code.key.keysym.sym, params);
 		return (true);
 	}
-	else if (event.type == SDL_MOUSEMOTION)
+	else if (code.type == SDL_KEYUP)
 	{
-		route_mouse_move(event.motion, params);
+		key_up(code.key.keysym.sym, params);
+		return (true);
+	}
+	else if (code.type == SDL_MOUSEMOTION)
+	{
+		route_mouse_move(code.motion, params);
 		return (true);
 	}
 	if (params->pos_info.jump > 0)
@@ -62,6 +76,7 @@ bool	check_event(SDL_Event event, t_wolf *params)
 			SDL_UpdateWindowSurface(params->sdl.window);
 		}
 		return (true);
+	}
 	}
 	return (false);
 }

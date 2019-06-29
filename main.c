@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:45:41 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:45:42 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 21:40:29 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int			main(int ac, char **av)
 	make_calculations(&params);
 	draw_hud(&params);
 	Mix_PlayMusic(params.sounds.music, 1);
-	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
-		if (check_event(params.sdl.event, &params))
-		{
+	while (params.is_working)
+	{		check_event(params.sdl.event, &params);
+			route_events(&params);
 			make_calculations(&params);
 			draw_sprites(&params);
 			draw_hud(&params);

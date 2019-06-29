@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom-nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 18:14:53 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/29 21:43:05 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@
 # define SPEED_LEFT 1.5
 
 # define JUMP_HEIGHT 80
+
+typedef	struct	s_move
+{
+	int			ws;
+	int			ad;
+	int			mm;
+	SDL_MouseMotionEvent mouse;
+}				t_move;
 
 typedef struct	s_sdl
 {
@@ -147,6 +155,7 @@ typedef struct	s_wolf
 	SDL_Surface	*floor_tex;
 	int 		sprite_amount;
 	t_sound		sounds;
+	t_move		move_ev;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -173,10 +182,10 @@ bool			read_map(t_wolf *params, char *input);
 int				handle_map_error(t_wolf *params);
 bool			init_sdl(t_wolf *params);
 void			init_position(t_wolf *params);
-bool			check_event(SDL_Event event, t_wolf *params);
+bool			check_event(t_wolf *params);
 void			make_calculations(t_wolf *params);
 int				height_for_column(int x, t_wolf *params);
-void			route_events(SDL_Scancode code, t_wolf *params);
+void			route_events(t_wolf *params);
 void			parse_map(t_wolf *params, char *raw_map);
 void			add_perimeter_walls(int **map);
 void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
