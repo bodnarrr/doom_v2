@@ -37,7 +37,7 @@
 # define MIN_ROTATE_SPEED 0
 # define MAX_ROTATE_SPEED 0.12
 
-# define TX_COUNT 3
+# define TX_COUNT 9
 
 # define SPEED_RIGHT -1.5
 # define SPEED_LEFT 1.5
