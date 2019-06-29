@@ -16,6 +16,7 @@ int			main(int ac, char **av)
 {
 	t_wolf	params;
 
+	ft_bzero(&params, sizeof(t_wolf));
 	if (!check_arguments(ac, &params))
 		return (handle_error(&params));
 	init_parameters(&params);
