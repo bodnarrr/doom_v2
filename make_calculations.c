@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_calculations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:45:46 by abodnar           #+#    #+#             */
-/*   Updated: 2019/05/01 17:45:47 by abodnar          ###   ########.fr       */
+/*   Updated: 2019/06/29 18:09:44 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	draw_column(int x, int height, t_wolf *params)
 {
     draw_textured_wall(x, height, params);
     draw_textured_floor(x, height, params);
+//	draw_textured_ceiling(x, height, params);
 }
 
 void		make_calculations(t_wolf *params)

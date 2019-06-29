@@ -25,18 +25,18 @@ static void	horizontal_rotate(bool is_right, t_wolf *params)
 							   + params->pos_info.plane_y * cos(speed);
 }
 
-//static void	vertical_rotate(bool is_up, t_wolf *params)
-//{
-//	int delta;
-//
-//	delta = is_up ? -5 : 5;
-//	params->pos_info.height += delta;
-//}
+static void	vertical_rotate(bool is_up, t_wolf *params)
+{
+	int delta;
+
+	delta = is_up ? -5 : 5;
+	params->pos_info.height += delta;
+}
 
 void		route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params)
 {
 	if (event.xrel != 0)
 		horizontal_rotate(event.xrel > 0, params);
-//	if (event.yrel != 0)
-//		vertical_rotate(event.yrel > 0, params);
+	if (event.yrel != 0)
+		vertical_rotate(event.yrel > 0, params);
 }

@@ -14,6 +14,8 @@ void	draw_textured_wall(int x, int height, t_wolf *params)
 	dr.pixels = (Uint32*)params->sdl.surface->pixels;
 	params->wall_color = 0;
 	dr.wall_start = dr.wall_start < 0 ? 0 : dr.wall_start;
+	dr.wall_start = dr.wall_start >= SCREEN_HEIGHT ? SCREEN_HEIGHT - 1 : dr.wall_start;
+	dr.wall_end = dr.wall_end < 0 ? 0 : dr.wall_end;
 	dr.wall_end = dr.wall_end >= SCREEN_HEIGHT ? SCREEN_HEIGHT - 1 : dr.wall_end;
 	while (dr.wall_start < dr.wall_end)
 	{
@@ -21,7 +23,7 @@ void	draw_textured_wall(int x, int height, t_wolf *params)
 		dr.tex_x = (int) (params->wall_x * (double) params->textures[params->tex_ind]->w);
 		if ((params->side == 0 && params->ray_x > 0) || (params->side == 1 && params->ray_y < 0))
 			dr.tex_x = params->textures[params->tex_ind]->w - dr.tex_x - 1;
-		dr.d = dr.wall_start * 2 - SCREEN_HEIGHT + height;
+		dr.d = dr.wall_start * 2 - SCREEN_HEIGHT + height - params->pos_info.height * 2;
 		dr.tex_y = ((dr.d * params->textures[params->tex_ind]->w) / height) / 2;
 		if (dr.tex_x >= 0 && dr.tex_x < params->textures[params->tex_ind]->h && dr.tex_y >= 0 && dr.tex_y < params->textures[params->tex_ind]->w)
 			params->wall_color = ((Uint32 *)params->textures[params->tex_ind]->pixels)[params->textures[params->tex_ind]->h * dr.tex_y + dr.tex_x];

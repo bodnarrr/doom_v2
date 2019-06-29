@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doom-nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 15:51:24 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/29 18:14:53 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
+	int			v_rotate;
 	int 		height;
 	double		jump;
 	double		perp_wall_dist;
