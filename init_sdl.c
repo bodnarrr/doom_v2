@@ -19,8 +19,6 @@ static void	prepare_textures(t_wolf *params)
 	params->ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
 	params->floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
 
-	params->sdl.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
-
 	params->textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
 	params->textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
 	params->textures[2] = IMG_Load("./media/textures/green_smart1.jpg");
@@ -34,6 +32,11 @@ static void	prepare_textures(t_wolf *params)
 	params->hud.main_HUD = IMG_Load("./media/pics/hud.jpg");
 	params->hud.face = IMG_Load("./media/pics/Aladdin.png");
 	params->hud.logo = IMG_Load("./media/pics/aladdin_small.png");
+
+	params->sounds.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
+
+	params->sounds.sound1 = Mix_LoadWAV("./media/sounds/sound.mp3");
+	params->sounds.sound2 = Mix_LoadWAV("./media/sounds/tiger.mp3");
 
 
 	params->sprite.y = 2;

@@ -27,7 +27,7 @@ int			main(int ac, char **av)
 	init_position(&params);
 	make_calculations(&params);
 	draw_hud(&params);
-	Mix_PlayMusic(params.sdl.music, 1);
+	Mix_PlayMusic(params.sounds.music, 1);
 	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
 		if (check_event(params.sdl.event, &params))
 		{

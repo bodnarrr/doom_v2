@@ -49,7 +49,7 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
-	Mix_Music	*music;
+
     double		ray_dir_x;
     double		ray_dir_y;
     int			map_x;
@@ -116,6 +116,13 @@ typedef struct	s_position
 	double		perp_wall_dist;
 }				t_position;
 
+typedef struct	s_sound
+{
+	Mix_Music	*music;
+	Mix_Chunk	*sound1;
+	Mix_Chunk	*sound2;
+}				t_sound;
+
 typedef struct	s_wolf
 {
 	t_sdl		sdl;
@@ -139,6 +146,7 @@ typedef struct	s_wolf
 	SDL_Surface	*ceil_tex;
 	SDL_Surface	*floor_tex;
 	int 		sprite_amount;
+	t_sound		sounds;
 }				t_wolf;
 
 typedef struct	s_iteration
