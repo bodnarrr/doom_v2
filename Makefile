@@ -32,6 +32,7 @@ INCLUDES = 		-I frameworks/SDL2.framework/Versions/A/Headers \
 				-I frameworks/SDL2_ttf.framework/Versions/A/Headers \
 				-I frameworks/SDL2_image.framework/Versions/A/Headers \
 				-I frameworks/SDL2_mixer.framework/Versions/A/Headers \
+				-F ./frameworks \
 
 FRAMEWORKS	=	-F ./frameworks \
 				-rpath @loader_path/frameworks \
@@ -42,11 +43,11 @@ HEADERS = *.h
 all: $(NAME)
 
 %.o : %.c
-	@gcc $(FLAGS) -I. -I./libftprintf $(FLAGS) -c $< -o $@ $(INCLUDES)
+	@gcc $(FLAGS) -I. -I./libftprintf $(FLAGS) -c $< -o $@ $(INCLUDES) 
 
 $(NAME): $(LIB) $(OBJECTS) $(HEADERS)
 	@gcc $(FLAGS) $(CGFLAGS) $(FRAMEWORKS) -o $@ -I. -I./libftprintf $(OBJECTS) $(LIB) 
-	@echo "\033[1;32mWolf3D is ready\033[0m"
+	@echo "\033[1;32mDoom-Nukem is ready\033[0m"
 
 $(LIB):
 	@make -C ./libftprintf/

@@ -12,7 +12,7 @@
 
 #include "doom-nukem.h"
 
-static bool	is_active_event(SDL_Scancode code)
+static bool		is_active_event(SDL_Scancode code)
 {
 	if (code == SDL_SCANCODE_W
 		|| code == SDL_SCANCODE_A
@@ -27,7 +27,7 @@ static bool	is_active_event(SDL_Scancode code)
 	return (FALSE);
 }
 
-bool	check_event(SDL_Event event, t_wolf *params)
+bool			check_event(SDL_Event event, t_wolf *params)
 {
 	SDL_Scancode	code;
 	int				i;
