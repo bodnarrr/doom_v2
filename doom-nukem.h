@@ -67,8 +67,7 @@ typedef struct	s_hud
 {
 	SDL_Surface	*main_HUD;
 	SDL_Surface	*face;
-	int 		x;
-	int 		y;
+	SDL_Surface	*logo;
 }				t_hud;
 
 typedef struct	s_draw_wall
@@ -138,6 +137,7 @@ typedef struct	s_wolf
 	double		z_buffer[SCREEN_WIDTH];
 	SDL_Surface	*ceil_tex;
 	SDL_Surface	*floor_tex;
+	int 		sprite_amount;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -170,13 +170,10 @@ int				height_for_column(int x, t_wolf *params);
 void			route_events(SDL_Scancode code, t_wolf *params);
 void			parse_map(t_wolf *params, char *raw_map);
 void			add_perimeter_walls(int **map);
-void			set_wall_color(t_wolf *params, int value);
 void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
 void			draw_sprites(t_wolf *params);
-void            hud(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
-void			draw_text(t_wolf *params);
 void			draw_hud(t_wolf *params);
 
 #endif

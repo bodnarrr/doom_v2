@@ -28,6 +28,8 @@ static void	prepare_textures(t_wolf *params)
 
 	params->hud.main_HUD = IMG_Load("./media/pics/hud.jpg");
 	params->hud.face = IMG_Load("./media/pics/Aladdin.png");
+	params->hud.logo = IMG_Load("./media/pics/aladdin_small.png");
+
 
 	params->sprite.y = 2;
 	params->sprite.x = 5;

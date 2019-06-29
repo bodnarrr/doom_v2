@@ -57,7 +57,6 @@ bool	check_event(SDL_Event event, t_wolf *params)
 		{
 			params->pos_info.jump -= 1;
 			make_calculations(params);
-			draw_text(params);
 			draw_hud(params);
 		}
 		return (true);
