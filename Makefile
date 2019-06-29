@@ -26,13 +26,13 @@ FLAGS = -Wall -Wextra -Werror -O3
 
 CGFLAGS = -framework OpenGL -framework AppKit
 
-INCLUDES	=	-I/Library/Frameworks/SDL2.framework/Headers \
-                -I/Library/Frameworks/SDL2_image.framework/Headers \
-                -I/Library/Frameworks/SDL2_ttf.framework/Headers \
+INCLUDES = -I./frameworks/SDL2.framework/Versions/A/Headers \
+           -F./frameworks/
 
-
-FRAMEWORKS = -F/Library/Frameworks -framework SDL2 \
-             -framework SDL2 -framework SDL2_image -framework SDL2_ttf
+FRAMEWORKS = -F./frameworks \
+               -rpath ./frameworks \
+               -framework OpenGL -framework AppKit -framework SDL2 \
+               -framework SDL2_image -framework SDL2_ttf -framework SDL2_mixer
 
 HEADERS = *.h
 

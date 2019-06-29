@@ -14,13 +14,13 @@
 # define WOLF3D_H
 
 # include "libftprintf/libftprintf.h"
-# include <SDL2/SDL.h>
-# include <SDL2/SDL_image.h>
+# include "frameworks/SDL2/SDL.h"
+# include "frameworks/SDL2/SDL_image.h"
+# include "frameworks/SDL2/SDL_ttf.h"
+# include "frameworks/SDL2/SDL_mixer.h"
 # include <math.h>
 # include <stdlib.h>
 
-# include <SDL2/SDL_ttf.h>
-//# include <SDL2/SDL_mixer.h>
 # include <math.h>
 
 # include <stdbool.h>
@@ -49,7 +49,7 @@ typedef struct	s_sdl
 	SDL_Window	*window;
 	SDL_Surface	*surface;
 	SDL_Event	event;
-//	Mix_Music	*music;
+	Mix_Music	*music;
     double		ray_dir_x;
     double		ray_dir_y;
     int			map_x;

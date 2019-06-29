@@ -25,12 +25,12 @@ int			main(int ac, char **av)
 		return (handle_error(&params));
 	init_position(&params);
 	make_calculations(&params);
+	Mix_PlayMusic(params.sdl.music, 1);
 	while (params.is_working && SDL_WaitEvent(&params.sdl.event))
 	{
 		check_event(params.sdl.event, &params);
 //		hud(&params);
 		draw_text(&params);
-//		Mix_PlayMusic(params.sdl.music, 1);
 	}
 
 	return (0);

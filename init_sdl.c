@@ -19,7 +19,7 @@ static void	prepare_textures(t_wolf *params)
 	params->ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
 	params->floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
 
-//	params->sdl.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
+	params->sdl.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
 
 
 	//
@@ -55,11 +55,11 @@ bool		init_sdl(t_wolf *params)
 		params->error = ft_strdup(SDL_GetError());
 		return (FALSE);
 	}
-//	if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
-//	{
-//		params->error = ft_strdup(SDL_GetError());
-//		return (FALSE);
-//	}
+	if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 4096) < 0)
+	{
+		params->error = ft_strdup(SDL_GetError());
+		return (FALSE);
+	}
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 	params->sdl.surface = SDL_GetWindowSurface(params->sdl.window);
 	prepare_textures(params);

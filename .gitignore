@@ -1,4 +1,8 @@
 a.out
 wolf3d
+doom-nukem
 *.o
 *.a
+.idea
+CMake*
+cmake*
