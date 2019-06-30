@@ -12,78 +12,70 @@
 
 #include "doom_nukem.h"
 
-void	draw_sprites(t_wolf *params)
+static void	draw_sprites_prepare(t_dr_spr *d, t_wolf *params)
 {
-	double	spr_x;
-	double	spr_y;
-	double	inv_det;
-	double	transf_x;
-	double	transf_y;
-	int		spr_scr_x;
-	int		spr_h;
-	int		draw_start_y;
-	int		draw_end_y;
-	int		spr_w;
-	int		draw_start_x;
-	int		draw_end_x;
-	int		i;
-	int		j;
-	int		tex_x;
-	int		tex_y;
-	int		pos;
-	int		d;
-	Uint32	color;
-	int		ind;
+	d->spr_x = params->sprites[d->ind]->x - params->pos_info.pos_x;
+	d->spr_y = params->sprites[d->ind]->y - params->pos_info.pos_y;
+	d->inv_det = 1.0 / (params->pos_info.plane_x * params->pos_info.dir_y
+					- params->pos_info.dir_x * params->pos_info.plane_y);
+	d->transf_x = d->inv_det * (params->pos_info.dir_y * d->spr_x
+					- params->pos_info.dir_x * d->spr_y);
+	d->transf_y = d->inv_det * (-params->pos_info.plane_y * d->spr_x
+					+ params->pos_info.plane_x * d->spr_y);
+	d->spr_scr_x = (int)((SCREEN_WIDTH / 2) * (1 + d->transf_x / d->transf_y));
+	d->spr_h = abs((int)(SCREEN_HEIGHT / (d->transf_y)));
+	d->draw_start_y = -d->spr_h / 2 + SCREEN_HEIGHT / 2;
+	if (d->draw_start_y < 0)
+		d->draw_start_y = 0;
+	d->draw_end_y = d->spr_h / 2 + SCREEN_HEIGHT / 2;
+	if (d->draw_end_y >= SCREEN_HEIGHT)
+		d->draw_end_y = SCREEN_HEIGHT - 1;
+	d->spr_w = abs((int)(SCREEN_HEIGHT / (d->transf_y)));
+	d->draw_start_x = -d->spr_w / 2 + d->spr_scr_x;
+	if (d->draw_start_x < 0)
+		d->draw_start_x = 0;
+	d->draw_end_x = d->spr_w / 2 + d->spr_scr_x;
+	if (d->draw_end_x >= SCREEN_WIDTH)
+		d->draw_end_x = SCREEN_WIDTH - 1;
+	d->i = d->draw_start_x;
+}
 
-	ind = 0;
-	while (ind < params->sprite_amount)
+static void	draw_sprites_main(t_dr_spr *d, t_wolf *params)
+{
+	while (d->i < d->draw_end_x)
 	{
-		spr_x = params->sprites[ind]->x - params->pos_info.pos_x;
-		spr_y = params->sprites[ind]->y - params->pos_info.pos_y;
-		inv_det = 1.0 / (params->pos_info.plane_x * params->pos_info.dir_y
-						- params->pos_info.dir_x * params->pos_info.plane_y);
-		transf_x = inv_det * (params->pos_info.dir_y * spr_x
-						- params->pos_info.dir_x * spr_y);
-		transf_y = inv_det * (-params->pos_info.plane_y * spr_x
-						+ params->pos_info.plane_x * spr_y);
-		spr_scr_x = (int)((SCREEN_WIDTH / 2) * (1 + transf_x / transf_y));
-		spr_h = abs((int)(SCREEN_HEIGHT / (transf_y)));
-		draw_start_y = -spr_h / 2 + SCREEN_HEIGHT / 2;
-		if (draw_start_y < 0)
-			draw_start_y = 0;
-		draw_end_y = spr_h / 2 + SCREEN_HEIGHT / 2;
-		if (draw_end_y >= SCREEN_HEIGHT)
-			draw_end_y = SCREEN_HEIGHT - 1;
-		spr_w = abs((int)(SCREEN_HEIGHT / (transf_y)));
-		draw_start_x = -spr_w / 2 + spr_scr_x;
-		if (draw_start_x < 0)
-			draw_start_x = 0;
-		draw_end_x = spr_w / 2 + spr_scr_x;
-		if (draw_end_x >= SCREEN_WIDTH)
-			draw_end_x = SCREEN_WIDTH - 1;
-		i = draw_start_x;
-		while (i < draw_end_x)
+		d->tex_x = (int)(256 * (d->i - (-d->spr_w / 2 + d->spr_scr_x))
+						* params->sprites[d->ind]->texture->w / d->spr_w) / 256;
+		if (d->transf_y > 0 && d->i > 0 && d->i < SCREEN_WIDTH
+			&& d->transf_y < params->z_buffer[d->i])
 		{
-			tex_x = (int)(256 * (i - (-spr_w / 2 + spr_scr_x))
-						  * params->sprites[ind]->texture->w / spr_w) / 256;
-			if (transf_y > 0 && i > 0 && i < SCREEN_WIDTH
-				&& transf_y < params->z_buffer[i])
+			d->j = d->draw_start_y;
+			while (d->j < d->draw_end_y)
 			{
-				j = draw_start_y;
-				while (j < draw_end_y)
-				{
-					pos = i + (j * SCREEN_WIDTH);
-					d = j * 256 - SCREEN_HEIGHT * 128 + spr_h * 128;
-					tex_y = ((d * params->sprites[ind]->texture->h) / spr_h) / 256;
-					color = ((Uint32*)params->sprites[ind]->texture->pixels)
-					[params->sprites[ind]->texture->w * tex_y + tex_x];
-					if ((color & 0x00FFFFFF) != 0)
-						((Uint32*)params->sdl.surface->pixels)[pos] = color;
-					j++;
-				}
+				d->pos = d->i + (d->j * SCREEN_WIDTH);
+				d->d = d->j * 256 - SCREEN_HEIGHT * 128 + d->spr_h * 128;
+				d->tex_y = ((d->d * params->sprites[d->ind]->texture->h)
+						/ d->spr_h) / 256;
+				d->color = ((Uint32*)params->sprites[d->ind]->texture->pixels)
+				[params->sprites[d->ind]->texture->w * d->tex_y + d->tex_x];
+				if ((d->color & 0x00FFFFFF) != 0)
+					((Uint32*)params->sdl.surface->pixels)[d->pos] = d->color;
+				d->j++;
 			}
-			i++;
 		}
-		ind++;
+		d->i++;
+	}
+}
+
+void		draw_sprites(t_wolf *params)
+{
+	t_dr_spr	d;
+
+	d.ind = 0;
+	while (d.ind < params->sprite_amount)
+	{
+		draw_sprites_prepare(&d, params);
+		draw_sprites_main(&d, params);
+		d.ind++;
 	}
 }

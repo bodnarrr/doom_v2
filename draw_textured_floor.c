@@ -36,6 +36,30 @@ static void		check_floor_dir(t_wolf *params, t_draw_floor *dr)
 	}
 }
 
+static void		ceilinig_draw(int x, t_wolf *p, t_draw_floor *dr)
+{
+	while (dr->wall_start >= 0)
+	{
+		dr->cur_dist = SCREEN_HEIGHT / (2.0 * -dr->wall_start + \
+						SCREEN_HEIGHT + 2 * p->pos_info.height);
+		dr->weight = (dr->cur_dist - dr->dist_pl) / (dr->dist_wall
+				- dr->dist_pl);
+		dr->cur_floor_x = dr->weight * dr->floor_x + (1.0 - dr->weight)
+				* p->pos_info.pos_x;
+		dr->cur_floor_y = dr->weight * dr->floor_y + (1.0 - dr->weight)
+				* p->pos_info.pos_y;
+		dr->floor_tex_x = (int)(dr->cur_floor_x * p->media.floor_tex->w)
+				% p->media.floor_tex->w;
+		dr->floor_tex_y = (int)(dr->cur_floor_y * p->media.floor_tex->h)
+				% p->media.floor_tex->h;
+		dr->ceil_pos = x + (dr->wall_start * SCREEN_WIDTH);
+		dr->pixels[dr->ceil_pos] = set_color(((int*)p->media.floor_tex->pixels)
+			[p->media.floor_tex->w * dr->floor_tex_y + dr->floor_tex_x],
+				dr->cur_dist);
+		dr->wall_start--;
+	}
+}
+
 void			draw_textured_ceiling(int x, int height, t_wolf *p)
 {
 	t_draw_floor	dr;
@@ -47,24 +71,7 @@ void			draw_textured_ceiling(int x, int height, t_wolf *p)
 	check_floor_dir(p, &dr);
 	dr.dist_wall = p->pos_info.perp_wall_dist;
 	dr.dist_pl = 0.0;
-	while (dr.wall_start >= 0)
-	{
-		dr.cur_dist = SCREEN_HEIGHT / (2.0 * -dr.wall_start + \
-						SCREEN_HEIGHT + 2 * p->pos_info.height);
-		dr.weight = (dr.cur_dist - dr.dist_pl) / (dr.dist_wall - dr.dist_pl);
-		dr.cur_floor_x = dr.weight * dr.floor_x + (1.0 - dr.weight) * \
-															p->pos_info.pos_x;
-		dr.cur_floor_y = dr.weight * dr.floor_y + (1.0 - dr.weight) * \
-															p->pos_info.pos_y;
-		dr.floor_tex_x = (int)(dr.cur_floor_x * p->media.floor_tex->w)
-				% p->media.floor_tex->w;
-		dr.floor_tex_y = (int)(dr.cur_floor_y * p->media.floor_tex->h)
-				% p->media.floor_tex->h;
-		dr.ceil_pos = x + (dr.wall_start * SCREEN_WIDTH);
-		dr.pixels[dr.ceil_pos] = set_color(((int*)p->media.floor_tex->pixels)\
-			[p->media.floor_tex->w * dr.floor_tex_y + dr.floor_tex_x], dr.cur_dist);
-		dr.wall_start--;
-	}
+	ceilinig_draw(x, p, &dr);
 }
 
 void			draw_textured_floor(int x, int height, t_wolf *p)

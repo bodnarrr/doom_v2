@@ -186,6 +186,30 @@ typedef struct	s_iteration
 	int			hit;
 }				t_iterations;
 
+typedef struct	s_dr_spr
+{
+	double	spr_x;
+	double	spr_y;
+	double	inv_det;
+	double	transf_x;
+	double	transf_y;
+	int		spr_scr_x;
+	int		spr_h;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		spr_w;
+	int		draw_start_x;
+	int		draw_end_x;
+	int		i;
+	int		j;
+	int		tex_x;
+	int		tex_y;
+	int		pos;
+	int		d;
+	Uint32	color;
+	int		ind;
+}				t_dr_spr;
+
 bool			check_arguments(int ac, t_wolf *params);
 int				handle_error(t_wolf *params);
 void			init_parameters(t_wolf *params);
