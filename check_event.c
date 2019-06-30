@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 12:13:42 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 12:43:40 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	define_mouse(t_wolf *params)
 		params->move_ev.mws = -1;
 	else if (params->move_ev.code.motion.xrel < 0)
 		params->move_ev.mws = 1;
-	else if (params->move_ev.code.motion.yrel > 0)
+	if (params->move_ev.code.motion.yrel > 0)
 		params->move_ev.mad = 1;
 	else if (params->move_ev.code.motion.yrel < 0)
 		params->move_ev.mad = -1;
