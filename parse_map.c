@@ -12,7 +12,12 @@
 
 #include "doom_nukem.h"
 
-static int	*line_to_int_arr(char *line)
+static void	parse_sprites(t_wolf *params)
+{
+	ft_printf("Sprites amount: %d\n", params->sprite_amount);
+}
+
+static int	*line_to_int_arr(char *line, t_wolf *params)
 {
 	char	**splt;
 	int		i;
@@ -26,7 +31,11 @@ static int	*line_to_int_arr(char *line)
 	res = (int*)ft_memalloc(sizeof(int) * (i + 1));
 	j = -1;
 	while (++j < i)
+	{
 		res[j] = ft_atoi(splt[j]);
+		if (res[j] > 9 && res[j] < 20)
+			params->sprite_amount++;
+	}
 	res[j] = -1;
 	i = 0;
 	while (splt[i])
@@ -47,11 +56,12 @@ void		parse_map(t_wolf *params, char *raw_map)
 	while (i < params->map_height)
 	{
 		line = ft_strsub_chr(map_cpy, '\n');
-		params->map[i] = line_to_int_arr(line);
+		params->map[i] = line_to_int_arr(line, params);
 		ft_strdel(&line);
 		map_cpy = ft_strchr(map_cpy, '\n') + 1;
 		i++;
 	}
 	params->map[i] = NULL;
+	parse_sprites(params);
 	params->did_read_map = TRUE;
 }

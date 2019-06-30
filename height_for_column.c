@@ -70,10 +70,15 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 			iter->map_y += iter->step_y;
 			params->side = 1;
 		}
-		if (params->map[iter->map_y]
-			&& params->map[iter->map_y][iter->map_x] > 0)
+		if (params->map[iter->map_y][iter->map_x] > 0
+			&& params->map[iter->map_y][iter->map_x] < 10)
 		{
 			params->tex_ind = params->map[iter->map_y][iter->map_x] - 1;
+			iter->hit = 1;
+		}
+		else if (params->map[iter->map_y][iter->map_x] > 19)
+		{
+			params->tex_ind = 0;
 			iter->hit = 1;
 		}
 	}

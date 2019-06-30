@@ -31,9 +31,11 @@ static void	move_left_right(bool is_right, t_wolf *params)
 			* params->pos_info.move_speed / 2;
 	new_x = params->pos_info.pos_x + new_dir_x
 			* params->pos_info.move_speed / 2;
-	if (params->map[(int)new_y][(int)params->pos_info.pos_x] == 0)
+	if (params->map[(int)new_y][(int)params->pos_info.pos_x] < 1
+		|| params->map[(int)new_y][(int)params->pos_info.pos_x] > 9)
 		params->pos_info.pos_y = new_y;
-	if (params->map[(int)params->pos_info.pos_y][(int)new_x] == 0)
+	if (params->map[(int)params->pos_info.pos_y][(int)new_x] < 1
+		|| params->map[(int)params->pos_info.pos_y][(int)new_x] > 9)
 		params->pos_info.pos_x = new_x;
 }
 
@@ -52,9 +54,11 @@ static void	move_forward_back(bool is_move_forward, t_wolf *params)
 				+ params->pos_info.dir_x * params->pos_info.move_speed
 			: params->pos_info.pos_x
 				- params->pos_info.dir_x * params->pos_info.move_speed;
-	if (params->map[(int)new_y][(int)params->pos_info.pos_x] == 0)
+	if (params->map[(int)new_y][(int)params->pos_info.pos_x] < 1
+		|| params->map[(int)new_y][(int)params->pos_info.pos_x] > 9)
 		params->pos_info.pos_y = new_y;
-	if (params->map[(int)params->pos_info.pos_y][(int)new_x] == 0)
+	if (params->map[(int)params->pos_info.pos_y][(int)new_x] < 1
+		|| params->map[(int)params->pos_info.pos_y][(int)new_x] > 9)
 		params->pos_info.pos_x = new_x;
 }
 
