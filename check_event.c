@@ -6,13 +6,13 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 11:49:17 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/29 20:59:12 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
-static bool	is_active_event(SDL_Scancode code)
+static bool		is_active_event(SDL_Scancode code)
 {
 	if (code == SDL_SCANCODE_W
 		|| code == SDL_SCANCODE_A
@@ -22,7 +22,9 @@ static bool	is_active_event(SDL_Scancode code)
 		|| code == SDL_SCANCODE_DOWN
 		|| code == SDL_SCANCODE_LEFT
 		|| code == SDL_SCANCODE_RIGHT
-		|| code == SDL_SCANCODE_SPACE)
+		|| code == SDL_SCANCODE_SPACE
+		|| code == SDL_SCANCODE_LSHIFT
+		|| code == SDL_SCANCODE_LCTRL)
 		return (TRUE);
 	return (FALSE);
 }

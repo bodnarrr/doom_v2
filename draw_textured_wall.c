@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 int		set_rgb(unsigned int r, unsigned int g, unsigned int b)
 {
