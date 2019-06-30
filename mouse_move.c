@@ -1,8 +1,16 @@
-//
-// Created by Andrii Bodnar on 2019-06-23.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_move.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abodnar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/29 21:02:40 by abodnar           #+#    #+#             */
+/*   Updated: 2019/06/29 21:02:41 by abodnar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	horizontal_rotate(t_wolf *params)
 {
@@ -17,16 +25,16 @@ static void	horizontal_rotate(t_wolf *params)
 		speed = params->pos_info.rotate_speed;
 	if (speed != 0)
 	{
-	old_dir_x = params->pos_info.dir_x;
-	params->pos_info.dir_x = params->pos_info.dir_x * cos(speed)
-							 - params->pos_info.dir_y * sin(speed);
-	params->pos_info.dir_y = old_dir_x * sin(speed)
-							 + params->pos_info.dir_y * cos(speed);
-	old_plane_x = params->pos_info.plane_x;
-	params->pos_info.plane_x = params->pos_info.plane_x * cos(speed)
-							   - params->pos_info.plane_y * sin(speed);
-	params->pos_info.plane_y = old_plane_x * sin(speed)
-							   + params->pos_info.plane_y * cos(speed);
+		old_dir_x = params->pos_info.dir_x;
+		params->pos_info.dir_x = params->pos_info.dir_x * cos(speed)
+								- params->pos_info.dir_y * sin(speed);
+		params->pos_info.dir_y = old_dir_x * sin(speed)
+								+ params->pos_info.dir_y * cos(speed);
+		old_plane_x = params->pos_info.plane_x;
+		params->pos_info.plane_x = params->pos_info.plane_x * cos(speed)
+								- params->pos_info.plane_y * sin(speed);
+		params->pos_info.plane_y = old_plane_x * sin(speed)
+								+ params->pos_info.plane_y * cos(speed);
 	}
 }
 

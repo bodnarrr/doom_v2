@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static bool	find_empty_position(t_wolf *params, int **map)
 {

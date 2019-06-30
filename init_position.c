@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 void	init_position(t_wolf *params)
 {
@@ -22,5 +22,4 @@ void	init_position(t_wolf *params)
 	params->pos_info.rotate_speed = 0.035;
 	params->pos_info.v_rotate = 0;
 	params->pos_info.height = 0;
-	params->pos_info.jump = 0;
 }

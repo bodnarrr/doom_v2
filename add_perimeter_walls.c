@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static bool	check_border(int y, int x, int **map)
 {

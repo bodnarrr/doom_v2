@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 // static void	increase_rotate_speed(bool is_increasing, t_wolf *params)
 // {

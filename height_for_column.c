@@ -6,11 +6,11 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:45 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 17:26:36 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/30 09:33:22 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "doom-nukem.h"
+#include "doom_nukem.h"
 
 static void	calc_cam_ray(int x, t_wolf *params, t_iterations *iter)
 {
@@ -82,9 +82,11 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 void		calc_wall_x(t_wolf *params, t_iterations *iter, int x)
 {
 	if (params->side == 0)
-		params->wall_x = params->pos_info.pos_y + iter->perp_wall_dist * iter->ray_dir_y;
+		params->wall_x = params->pos_info.pos_y + iter->perp_wall_dist
+				* iter->ray_dir_y;
 	else
-		params->wall_x = params->pos_info.pos_x + iter->perp_wall_dist * iter->ray_dir_x;
+		params->wall_x = params->pos_info.pos_x + iter->perp_wall_dist
+				* iter->ray_dir_x;
 	params->wall_x -= floor(params->wall_x);
 	params->ray_x = iter->ray_dir_x;
 	params->ray_y = iter->ray_dir_y;
@@ -103,9 +105,9 @@ void		calc_wall_distance(t_wolf *params, t_iterations *iter, int x)
 				/ iter->ray_dir_y;
 	params->pos_info.perp_wall_dist = iter->perp_wall_dist;
 	params->sdl.map_y = iter->map_y;
-    params->sdl.map_x = iter->map_x;
-    params->sdl.ray_dir_y = iter->ray_dir_y;
-    params->sdl.ray_dir_x = iter->ray_dir_x;
+	params->sdl.map_x = iter->map_x;
+	params->sdl.ray_dir_y = iter->ray_dir_y;
+	params->sdl.ray_dir_x = iter->ray_dir_x;
 	calc_wall_x(params, iter, x);
 }
 
