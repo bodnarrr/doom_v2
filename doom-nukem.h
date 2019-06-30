@@ -6,7 +6,7 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 18:14:53 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/30 09:36:42 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,6 @@ void			draw_sprites(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
 void			draw_hud(t_wolf *params);
+Uint32			set_color(int color, double dist);
 
 #endif

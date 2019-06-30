@@ -4,6 +4,23 @@
 
 #include "doom-nukem.h"
 
+int		set_rgb(unsigned int r, unsigned int g, unsigned int b)
+{
+	return ((r << 16) | (g << 8) | b);
+}
+
+Uint32	set_color(int color, double dist)
+{
+	Uint32 color_new;
+	if (dist > 1)
+		color_new = (Uint32)set_rgb((unsigned int)(((color & 0x00ff0000) >> 16) / dist),
+					(unsigned int)(((color & 0x0000ff00) >> 8) / dist),
+					(unsigned int)(((color & 0x000000ff)) / dist));
+	else
+		color_new = (Uint32) color;
+	return (color_new);
+}
+
 void	draw_textured_wall(int x, int height, t_wolf *params)
 {
 	t_draw_wall	dr;
@@ -26,7 +43,7 @@ void	draw_textured_wall(int x, int height, t_wolf *params)
 		dr.d = dr.wall_start * 2 - SCREEN_HEIGHT + height - params->pos_info.height * 2;
 		dr.tex_y = ((dr.d * params->textures[params->tex_ind]->w) / height) / 2;
 		if (dr.tex_x >= 0 && dr.tex_x < params->textures[params->tex_ind]->h && dr.tex_y >= 0 && dr.tex_y < params->textures[params->tex_ind]->w)
-			params->wall_color = ((Uint32 *)params->textures[params->tex_ind]->pixels)[params->textures[params->tex_ind]->h * dr.tex_y + dr.tex_x];
+			params->wall_color = set_color(((int*)params->textures[params->tex_ind]->pixels)[params->textures[params->tex_ind]->h * dr.tex_y + dr.tex_x], params->z_buffer[x]);
 		dr.pixels[dr.pos] = params->wall_color;
 		dr.wall_start++;
 	}
