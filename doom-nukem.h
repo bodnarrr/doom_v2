@@ -6,7 +6,7 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 09:36:42 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/30 11:44:38 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,7 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
-	int			v_rotate;
 	int 		height;
-	double		jump;
 	double		perp_wall_dist;
 }				t_position;
 
@@ -147,6 +145,8 @@ typedef struct	s_wolf
 	SDL_Surface	*floor_tex;
 	int 		sprite_amount;
 	t_sound		sounds;
+	int 		wall_start;
+	int 		wall_end;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -183,7 +183,10 @@ void			route_mouse_move(SDL_MouseMotionEvent event, t_wolf *params);
 void			draw_sprites(t_wolf *params);
 void			draw_textured_wall(int x, int height, t_wolf *params);
 void			draw_textured_floor(int x, int height, t_wolf *params);
+void			draw_textured_ceiling(int x, int height, t_wolf *params);
 void			draw_hud(t_wolf *params);
 Uint32			set_color(int color, double dist);
+int				calculate_start(int height, t_wolf *params);
+int				calculate_end(int height, t_wolf *params);
 
 #endif
