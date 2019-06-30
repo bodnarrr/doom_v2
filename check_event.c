@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 12:43:40 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 13:00:47 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	key_up(int key, t_wolf *params)
 
 void	define_mouse(t_wolf *params)
 {
+	printf("%d %d \n", params->move_ev.code.motion.xrel, params->move_ev.mouse.xrel);
 	if (params->move_ev.code.motion.xrel > 0)
 		params->move_ev.mws = -1;
 	else if (params->move_ev.code.motion.xrel < 0)
@@ -102,15 +103,15 @@ bool	check_event(t_wolf *params)
 	}
 	else if (params->move_ev.code.type == SDL_MOUSEMOTION)
 	{
-		if (params->move_ev.code.motion.x != params->move_ev.mouse.x
-			|| params->move_ev.code.motion.y != params->move_ev.mouse.y)
+		//write(1, "1", 1);
+		if (params->move_ev.code.motion.xrel != params->move_ev.mouse.xrel + 5
+			|| params->move_ev.code.motion.yrel != params->move_ev.mouse.yrel + 5)
 			define_mouse(params);
-		else
-		{
+	}
+	else if (params->move_ev.mouse.xrel == params->move_ev.code.motion.xrel && params->move_ev.mouse.yrel == params->move_ev.code.motion.yrel)
+	{
 			params->move_ev.mad = 0;
 			params->move_ev.mws = 0;
-		}
-		
 	}
 	if (params->pos_info.jump > 0)
 	{
@@ -125,6 +126,7 @@ bool	check_event(t_wolf *params)
 		}
 		return (true);
 	}
+	params->move_ev.mouse = params->move_ev.code.motion;
 	SDL_FlushEvent(params->move_ev.code.type);
 	}
 	return (false);
