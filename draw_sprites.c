@@ -16,7 +16,6 @@ static void	draw_sprites_prepare(t_dr_spr *d, t_doom *params)
 {
 	d->spr_x = params->sprites[d->ind]->x - params->pos_info.pos_x;
 	d->spr_y = params->sprites[d->ind]->y - params->pos_info.pos_y;
-	d->sprite_dist = sqrt(d->spr_x * d->spr_x + d->spr_y * d->spr_y);
 	d->inv_det = 1.0 / (params->pos_info.plane_x * params->pos_info.dir_y
 					- params->pos_info.dir_x * params->pos_info.plane_y);
 	d->transf_x = d->inv_det * (params->pos_info.dir_y * d->spr_x
@@ -25,10 +24,10 @@ static void	draw_sprites_prepare(t_dr_spr *d, t_doom *params)
 					+ params->pos_info.plane_x * d->spr_y);
 	d->spr_scr_x = (int)((SCREEN_WIDTH / 2) * (1 + d->transf_x / d->transf_y));
 	d->spr_h = abs((int)(SCREEN_HEIGHT / (d->transf_y)));
-	d->draw_start_y = -d->spr_h / 2 + SCREEN_HEIGHT / 2 + params->pos_info.height;
+	d->draw_start_y = -d->spr_h / 2 + SCREEN_HEIGHT / 2 + params->pos_info.h;
 	if (d->draw_start_y < 0)
 		d->draw_start_y = 0;
-	d->draw_end_y = d->spr_h / 2 + SCREEN_HEIGHT / 2 + params->pos_info.height;
+	d->draw_end_y = d->spr_h / 2 + SCREEN_HEIGHT / 2 + params->pos_info.h;
 	if (d->draw_end_y >= SCREEN_HEIGHT)
 		d->draw_end_y = SCREEN_HEIGHT - 1;
 	d->spr_w = abs((int)(SCREEN_HEIGHT / (d->transf_y)));
@@ -54,7 +53,8 @@ static void	draw_sprites_main(t_dr_spr *d, t_doom *params)
 			while (d->j < d->draw_end_y)
 			{
 				d->pos = d->i + (d->j * SCREEN_WIDTH);
-				d->d = d->j * 256 - SCREEN_HEIGHT * 128 + d->spr_h * 128 - 256 * params->pos_info.height;
+				d->d = d->j * 256 - SCREEN_HEIGHT * 128 + d->spr_h * 128 - 256
+						* params->pos_info.h;
 				d->tex_y = ((d->d * params->sprites[d->ind]->texture->h)
 						/ d->spr_h) / 256;
 				d->color = ((Uint32*)params->sprites[d->ind]->texture->pixels)

@@ -41,7 +41,7 @@ static void		ceilinig_draw(int x, t_doom *p, t_draw_floor *dr)
 	while (dr->wall_start >= 0)
 	{
 		dr->cur_dist = SCREEN_HEIGHT / (2.0 * -dr->wall_start + \
-						SCREEN_HEIGHT + 2 * p->pos_info.height);
+						SCREEN_HEIGHT + 2 * p->pos_info.h);
 		dr->weight = (dr->cur_dist - dr->dist_pl) / (dr->dist_wall
 				- dr->dist_pl);
 		dr->cur_floor_x = dr->weight * dr->floor_x + (1.0 - dr->weight)
@@ -80,7 +80,7 @@ static void		floor_draw(int x, t_doom *p, t_draw_floor *dr)
 	{
 		dr->pos = x + (dr->wall_end * SCREEN_WIDTH);
 		dr->cur_dist = SCREEN_HEIGHT / (2.0 * dr->wall_end
-				- SCREEN_HEIGHT - 2 * p->pos_info.height);
+				- SCREEN_HEIGHT - 2 * p->pos_info.h);
 		dr->weight = (dr->cur_dist - dr->dist_pl)
 				/ (dr->dist_wall - dr->dist_pl);
 		dr->cur_floor_x = dr->weight * dr->floor_x + (1.0 - dr->weight)

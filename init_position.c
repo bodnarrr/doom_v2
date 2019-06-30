@@ -20,5 +20,5 @@ void	init_position(t_doom *params)
 	params->pos_info.plane_y = 0.66;
 	params->pos_info.move_speed = 0.069;
 	params->pos_info.rotate_speed = 0.035;
-	params->pos_info.height = 0;
+	params->pos_info.h = 0;
 }

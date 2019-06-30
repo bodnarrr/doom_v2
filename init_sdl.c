@@ -28,26 +28,18 @@ static void	load_sounds(t_doom *params)
 	params->media.sound2 = Mix_LoadWAV("./media/sounds/tiger.mp3");
 }
 
-static void	load_wall_textures(t_doom *params)
-{
-	params->media.textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
-	params->media.textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
-	params->media.textures[2] = IMG_Load("./media/textures/green_smart1.jpg");
-	params->media.textures[3] = IMG_Load("./media/textures/fire_smart3.jpg");
-	params->media.textures[4] = IMG_Load("./media/textures/fire_smart4.jpg");
-	params->media.textures[5] = IMG_Load("./media/textures/water.jpg");
-	params->media.textures[6] = IMG_Load("./media/textures/sky_smart1.jpg");
-	params->media.textures[7] = IMG_Load("./media/textures/sky_smart2.jpg");
-	params->media.textures[8] = IMG_Load("./media/textures/sky_smart3.jpg");
-	params->media.floor_tex = IMG_Load("./media/textures/sky_smart4.jpg");
-	params->media.ceil_tex = IMG_Load("./media/textures/fire_smart.jpg");
-}
-
 static void	load_media(t_doom *params)
 {
 	load_wall_textures(params);
 	load_sounds(params);
 	load_hud_textures(params);
+}
+
+static void	init_helper(t_doom *params)
+{
+	SDL_SetRelativeMouseMode(SDL_TRUE);
+	params->sdl.surface = SDL_GetWindowSurface(params->sdl.window);
+	load_media(params);
 }
 
 bool		init_sdl(t_doom *params)
@@ -57,10 +49,9 @@ bool		init_sdl(t_doom *params)
 		params->error = ft_strdup(SDL_GetError());
 		return (FALSE);
 	}
-	params->sdl.window = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED,
-			SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
-			SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
-	if (!params->sdl.window)
+	if (!(params->sdl.window = SDL_CreateWindow("Wolf3d",
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
+		SCREEN_HEIGHT, SDL_WINDOW_SHOWN)))
 	{
 		params->error = ft_strdup(SDL_GetError());
 		return (FALSE);
@@ -75,8 +66,6 @@ bool		init_sdl(t_doom *params)
 		params->error = ft_strdup(SDL_GetError());
 		return (FALSE);
 	}
-	SDL_SetRelativeMouseMode(SDL_TRUE);
-	params->sdl.surface = SDL_GetWindowSurface(params->sdl.window);
-	load_media(params);
+	init_helper(params);
 	return (TRUE);
 }

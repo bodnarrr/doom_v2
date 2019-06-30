@@ -34,7 +34,7 @@ int		calculate_start(int height, t_doom *params)
 {
 	int start;
 
-	start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.height;
+	start = (SCREEN_HEIGHT - height) / 2 + params->pos_info.h;
 	start = start < 0 ? 0 : start;
 	start = start >= SCREEN_HEIGHT ? SCREEN_HEIGHT - 1 : start;
 	return (start);
@@ -44,7 +44,7 @@ int		calculate_end(int height, t_doom *params)
 {
 	int end;
 
-	end = (SCREEN_HEIGHT + height) / 2 + params->pos_info.height;
+	end = (SCREEN_HEIGHT + height) / 2 + params->pos_info.h;
 	end = end < 0 ? 0 : end;
 	end = end >= SCREEN_HEIGHT ? SCREEN_HEIGHT - 1 : end;
 	return (end);
@@ -66,7 +66,7 @@ void	draw_textured_wall(int x, int height, t_doom *p)
 		if ((p->side == 0 && p->ray_x > 0) || (p->side == 1 && p->ray_y < 0))
 			dr.tex_x = p->media.textures[p->tex_ind]->w - dr.tex_x - 1;
 		dr.d = dr.wall_start * 2 - SCREEN_HEIGHT + height - \
-				p->pos_info.height * 2;
+				p->pos_info.h * 2;
 		dr.tex_y = ((dr.d * p->media.textures[p->tex_ind]->w) / height) / 2;
 		if (dr.tex_x >= 0 && dr.tex_x < p->media.textures[p->tex_ind]->h &&\
 			dr.tex_y >= 0 && dr.tex_y < p->media.textures[p->tex_ind]->w)

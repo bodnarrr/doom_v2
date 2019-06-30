@@ -41,9 +41,9 @@ static void	horizontal_rotate(t_doom *params)
 static void	vertical_rotate(t_doom *params)
 {
 	if (params->move_ev.mad == 1)
-		params->pos_info.height -= DELTA_MOUSE;
+		params->pos_info.h -= DELTA_MOUSE;
 	else if (params->move_ev.mad == -1)
-		params->pos_info.height += DELTA_MOUSE;
+		params->pos_info.h += DELTA_MOUSE;
 }
 
 void		route_mouse_move(t_doom *params)

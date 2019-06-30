@@ -40,13 +40,16 @@
 
 # define JUMP_HEIGHT 80
 
+# define TP p->move_ev.code.type
+# define SYM p->move_ev.code.key.keysym.sym
+
 typedef struct	s_menu
 {
 	SDL_Surface	*menu_tex;
 	SDL_Surface	*menu_logo;
 	int			menu_active;
 	bool		menu_choose;
-	int 		menu_options;
+	int			menu_options;
 	SDL_Surface	*lose_tex;
 	SDL_Color	color;
 }				t_menu;
@@ -129,7 +132,7 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
-	int			height;
+	int			h;
 	double		jump;
 	double		perp_wall_dist;
 }				t_position;
@@ -214,7 +217,6 @@ typedef struct	s_dr_spr
 	int		d;
 	Uint32	color;
 	int		ind;
-	double	sprite_dist;
 }				t_dr_spr;
 
 bool			check_arguments(int ac, t_doom *params);
@@ -224,7 +226,7 @@ bool			read_map(t_doom *params, char *input);
 int				handle_map_error(t_doom *params);
 bool			init_sdl(t_doom *params);
 void			init_position(t_doom *params);
-void			check_event(t_doom *params);
+void			check_event(t_doom *p);
 void			make_calculations(t_doom *params);
 int				height_for_column(int x, t_doom *params);
 void			route_events(t_doom *params);
@@ -243,5 +245,11 @@ void			load_sprites_textures(t_doom *params);
 void			sprites_pickup(t_doom *params);
 int				amount_clear(t_doom *params);
 void			process_finish(t_doom *params);
+void			jump(t_doom *params);
+void			fly(t_doom *params);
+void			squat(t_doom *params);
+void			load_wall_textures(t_doom *params);
+void			calc_cam_ray(int x, t_doom *params, t_iterations *iter);
+void			key_down(int key, t_doom *params);
 
 #endif

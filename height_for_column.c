@@ -12,20 +12,6 @@
 
 #include "doom_nukem.h"
 
-static void	calc_cam_ray(int x, t_doom *params, t_iterations *iter)
-{
-	iter->camera_x = (double)2.0 * (double)x / (double)(SCREEN_WIDTH)
-			- (double)1.0;
-	iter->ray_dir_x = params->pos_info.dir_x
-			+ params->pos_info.plane_x * iter->camera_x;
-	iter->ray_dir_y = params->pos_info.dir_y
-			+ params->pos_info.plane_y * iter->camera_x;
-	iter->map_x = (int)params->pos_info.pos_x;
-	iter->map_y = (int)params->pos_info.pos_y;
-	iter->delta_dist_x = fabs((double)1.0 / iter->ray_dir_x);
-	iter->delta_dist_y = fabs((double)1.0 / iter->ray_dir_y);
-}
-
 static void	calc_axes(t_doom *params, t_iterations *iter)
 {
 	if (iter->ray_dir_x < 0)
