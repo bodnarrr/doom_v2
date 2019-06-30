@@ -37,8 +37,8 @@ static void	load_wall_textures(t_wolf *params)
 	params->media.textures[6] = IMG_Load("./media/textures/sky_smart1.jpg");
 	params->media.textures[7] = IMG_Load("./media/textures/sky_smart2.jpg");
 	params->media.textures[8] = IMG_Load("./media/textures/sky_smart3.jpg");
-	params->media.ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
-	params->media.floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
+	params->media.floor_tex = IMG_Load("./media/textures/sky_smart4.jpg");
+	params->media.ceil_tex = IMG_Load("./media/textures/fire_smart.jpg");
 }
 
 static void	load_media(t_wolf *params)
