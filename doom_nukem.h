@@ -81,6 +81,7 @@ typedef struct	s_hud
 	SDL_Surface	*main_hud;
 	SDL_Surface	*face;
 	SDL_Surface	*logo;
+	char 		*text;
 }				t_hud;
 
 typedef struct	s_draw_wall
@@ -164,6 +165,7 @@ typedef struct	s_wolf
 	bool		squat;
 	bool		fly;
 	int			sprite_amount;
+	int			sprite_picked;
 	t_sprite	**sprites;
 	t_media		media;
 }				t_wolf;

@@ -12,6 +12,37 @@
 
 #include "doom_nukem.h"
 
+static int		amount_clear(t_wolf *params)
+{
+	int res;
+	int i;
+
+	res = 0;
+	i = 0;
+	while (i < params->sprite_amount)
+	{
+		if (params->sprites[i]->id < 18)
+			res++;
+		i++;
+	}
+	return (res);
+}
+
+static void		prepare_hud_text(t_wolf *params)
+{
+	char	*temp1;
+	char	*temp2;
+
+	temp1 = ft_strdup("Collected: ");
+	temp2 = ft_itoa(params->sprite_picked);
+	temp1 = ft_str_clean_join(&temp1, &temp2);
+	temp2 = ft_strdup("/");
+	temp1 = ft_str_clean_join(&temp1, &temp2);
+	temp2 = ft_itoa(amount_clear(params));
+	temp1 = ft_str_clean_join(&temp1, &temp2);
+	params->hud.text = temp1;
+}
+
 static void		draw_sprites_text(t_wolf *params)
 {
 	SDL_Surface	*text_surface;
@@ -24,7 +55,8 @@ static void		draw_sprites_text(t_wolf *params)
 	font = TTF_OpenFont("./media/fonts/aladdin.ttf", 39);
 	if (font == NULL)
 		params->error = ft_strdup(SDL_GetError());
-	if (!(text_surface = TTF_RenderText_Solid(font, "Collection: X/X", color)))
+	prepare_hud_text(params);
+	if (!(text_surface = TTF_RenderText_Solid(font, params->hud.text, color)))
 		ft_printf("error\n");
 	else
 		SDL_BlitSurface(text_surface, NULL, params->sdl.surface, &sprites_rect);
