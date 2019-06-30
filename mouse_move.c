@@ -29,7 +29,7 @@ static void	vertical_rotate(bool is_up, t_wolf *params)
 {
 	int delta;
 
-	delta = is_up ? -5 : 5;
+	delta = is_up ? -DELTA_MOUSE : DELTA_MOUSE;
 	params->pos_info.height += delta;
 }
 

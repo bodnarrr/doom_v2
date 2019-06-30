@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:45:41 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/29 21:51:47 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 10:16:23 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int			main(int ac, char **av)
 	draw_hud(&params);
 	Mix_PlayMusic(params.sounds.music, 1);
 	while (params.is_working)
-	{		check_event(&params);
+	{
+			check_event(&params);
 			route_events(&params);
+			if (params.move_ev.code.type == SDL_MOUSEMOTION)
+				route_mouse_move(&params);
 			// if (params.move_ev.code.type == SDL_MOUSEMOTION)
 			// 	route_mouse_move(&params);
 			make_calculations(&params);
