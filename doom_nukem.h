@@ -32,12 +32,6 @@
 # define READ_SIZE 32
 # define DELTA_MOUSE 15
 
-# define MIN_SPEED 0
-# define MAX_SPEED 0.25
-
-# define MIN_ROTATE_SPEED 0
-# define MAX_ROTATE_SPEED 0.12
-
 # define TX_COUNT 9
 # define SPR_COUNT 10
 
@@ -45,6 +39,17 @@
 # define SPEED_LEFT 1.5
 
 # define JUMP_HEIGHT 80
+
+typedef struct	s_menu
+{
+	SDL_Surface	*menu_tex;
+	SDL_Surface	*menu_logo;
+	int			menu_active;
+	bool		menu_choose;
+	int 		menu_options;
+	SDL_Surface	*lose_tex;
+	SDL_Color	color;
+}				t_menu;
 
 typedef	struct	s_move
 {
@@ -81,7 +86,7 @@ typedef struct	s_hud
 	SDL_Surface	*main_hud;
 	SDL_Surface	*face;
 	SDL_Surface	*logo;
-	char 		*text;
+	char		*text;
 }				t_hud;
 
 typedef struct	s_draw_wall
@@ -124,7 +129,6 @@ typedef struct	s_position
 	double		plane_y;
 	double		move_speed;
 	double		rotate_speed;
-	int			v_rotate;
 	int			height;
 	double		jump;
 	double		perp_wall_dist;
@@ -139,11 +143,11 @@ typedef struct	s_media
 	Mix_Music	*music;
 	Mix_Chunk	*sound1;
 	Mix_Chunk	*sound2;
+	TTF_Font	*font;
 }				t_media;
 
-typedef struct	s_wolf
+typedef struct	s_doom
 {
-	int			is_sprite;
 	t_sdl		sdl;
 	t_position	pos_info;
 	int			**map;
@@ -160,15 +164,16 @@ typedef struct	s_wolf
 	double		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
 	t_move		move_ev;
-	int			wall_start;
-	int			wall_end;
 	bool		squat;
 	bool		fly;
 	int			sprite_amount;
 	int			sprite_picked;
 	t_sprite	**sprites;
 	t_media		media;
-}				t_wolf;
+	t_menu		menu;
+	bool		win;
+	bool		died;
+}				t_doom;
 
 typedef struct	s_iteration
 {
@@ -211,28 +216,31 @@ typedef struct	s_dr_spr
 	int		ind;
 }				t_dr_spr;
 
-bool			check_arguments(int ac, t_wolf *params);
-int				handle_error(t_wolf *params);
-void			init_parameters(t_wolf *params);
-bool			read_map(t_wolf *params, char *input);
-int				handle_map_error(t_wolf *params);
-bool			init_sdl(t_wolf *params);
-void			init_position(t_wolf *params);
-void			check_event(t_wolf *params);
-void			make_calculations(t_wolf *params);
-int				height_for_column(int x, t_wolf *params);
-void			route_events(t_wolf *params);
-void			parse_map(t_wolf *params, char *raw_map);
+bool			check_arguments(int ac, t_doom *params);
+int				handle_error(t_doom *params);
+void			init_parameters(t_doom *params);
+bool			read_map(t_doom *params, char *input);
+int				handle_map_error(t_doom *params);
+bool			init_sdl(t_doom *params);
+void			init_position(t_doom *params);
+void			check_event(t_doom *params);
+void			make_calculations(t_doom *params);
+int				height_for_column(int x, t_doom *params);
+void			route_events(t_doom *params);
+void			parse_map(t_doom *params, char *raw_map);
 void			add_perimeter_walls(int **map);
-void			route_mouse_move(t_wolf *params);
-void			draw_sprites(t_wolf *params);
-void			draw_textured_wall(int x, int height, t_wolf *params);
-void			draw_textured_floor(int x, int height, t_wolf *params);
-void			draw_textured_ceiling(int x, int height, t_wolf *params);
-void			draw_hud(t_wolf *params);
+void			route_mouse_move(t_doom *params);
+void			draw_sprites(t_doom *params);
+void			draw_textured_wall(int x, int height, t_doom *params);
+void			draw_textured_floor(int x, int height, t_doom *params);
+void			draw_textured_ceiling(int x, int height, t_doom *params);
+void			draw_hud(t_doom *params);
 Uint32			set_color(int color, double dist);
-int				calculate_start(int height, t_wolf *params);
-int				calculate_end(int height, t_wolf *params);
-void			load_sprites_textures(t_wolf *params);
+int				calculate_start(int height, t_doom *params);
+int				calculate_end(int height, t_doom *params);
+void			load_sprites_textures(t_doom *params);
+void			sprites_pickup(t_doom *params);
+int				amount_clear(t_doom *params);
+void			process_finish(t_doom *params);
 
 #endif

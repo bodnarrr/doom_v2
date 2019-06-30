@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void	process_jump(t_wolf *params)
+static void	process_jump(t_doom *params)
 {
 	int i;
 
@@ -27,7 +27,7 @@ static void	process_jump(t_wolf *params)
 	}
 }
 
-static void	process_game(t_wolf *params)
+static void	process_game(t_doom *params)
 {
 	check_event(params);
 	if (params->move_ev.mws || params->move_ev.ad || params->move_ev.ws
@@ -46,9 +46,9 @@ static void	process_game(t_wolf *params)
 
 int			main(int ac, char **av)
 {
-	t_wolf	params;
+	t_doom	params;
 
-	ft_bzero(&params, sizeof(t_wolf));
+	ft_bzero(&params, sizeof(t_doom));
 	if (!check_arguments(ac, &params))
 		return (handle_error(&params));
 	init_parameters(&params);
@@ -60,7 +60,8 @@ int			main(int ac, char **av)
 	make_calculations(&params);
 	draw_hud(&params);
 	Mix_PlayMusic(params.media.music, 1);
-	while (params.is_working)
+	while (params.is_working && !params.win && !params.died)
 		process_game(&params);
+	process_finish(&params);
 	return (0);
 }

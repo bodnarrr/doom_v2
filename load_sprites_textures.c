@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-void		load_sprites_textures(t_wolf *params)
+void		load_sprites_textures(t_doom *params)
 {
 	params->media.sprites_textures[0] = IMG_Load("./media/pics/abu.png");
 	params->media.sprites_textures[1] = IMG_Load("./media/pics/carpet.png");

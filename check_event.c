@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-void	jump(t_wolf *params)
+void	jump(t_doom *params)
 {
 	int height;
 	int delta_height;
@@ -39,7 +39,7 @@ void	jump(t_wolf *params)
 	}
 }
 
-void	key_down(int key, t_wolf *params)
+void	key_down(int key, t_doom *params)
 {
 	if (key == SDLK_UP || key == SDLK_w)
 		params->move_ev.ws = 1;
@@ -53,7 +53,7 @@ void	key_down(int key, t_wolf *params)
 		jump(params);
 }
 
-void	key_up(int key, t_wolf *params)
+void	key_up(int key, t_doom *params)
 {
 	if (key == SDLK_UP || key == SDLK_w)
 		params->move_ev.ws = 0;
@@ -65,7 +65,7 @@ void	key_up(int key, t_wolf *params)
 		params->move_ev.ad = 0;
 }
 
-void	define_mouse(t_wolf *params)
+void	define_mouse(t_doom *params)
 {
 	if (params->move_ev.code.motion.xrel > 0)
 		params->move_ev.mws = -1;
@@ -77,7 +77,7 @@ void	define_mouse(t_wolf *params)
 		params->move_ev.mad = -1;
 }
 
-void	check_event(t_wolf *params)
+void	check_event(t_doom *params)
 {
 	if (SDL_WaitEvent(&params->move_ev.code))
 	{

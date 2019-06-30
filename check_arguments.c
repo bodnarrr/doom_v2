@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-bool	check_arguments(int ac, t_wolf *params)
+bool	check_arguments(int ac, t_doom *params)
 {
 	if (ac != 2)
 	{

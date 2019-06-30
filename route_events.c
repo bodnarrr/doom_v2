@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void	move_left_right(bool is_right, t_wolf *params)
+static void	move_left_right(bool is_right, t_doom *params)
 {
 	double	old_dir_x;
 	double	new_dir_x;
@@ -39,7 +39,7 @@ static void	move_left_right(bool is_right, t_wolf *params)
 		params->pos_info.pos_x = new_x;
 }
 
-static void	move_forward_back(bool is_move_forward, t_wolf *params)
+static void	move_forward_back(bool is_move_forward, t_doom *params)
 {
 	double	new_y;
 	double	new_x;
@@ -62,7 +62,7 @@ static void	move_forward_back(bool is_move_forward, t_wolf *params)
 		params->pos_info.pos_x = new_x;
 }
 
-void		route_events(t_wolf *params)
+void		route_events(t_doom *params)
 {
 	if (params->move_ev.ws == 1)
 		move_forward_back(TRUE, params);
@@ -72,4 +72,5 @@ void		route_events(t_wolf *params)
 		move_left_right(FALSE, params);
 	else if (params->move_ev.ad == -1)
 		move_left_right(TRUE, params);
+	sprites_pickup(params);
 }

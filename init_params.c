@@ -12,9 +12,9 @@
 
 #include "doom_nukem.h"
 
-void	init_parameters(t_wolf *params)
+void	init_parameters(t_doom *params)
 {
-	ft_bzero(params, sizeof(t_wolf));
+	ft_bzero(params, sizeof(t_doom));
 	params->is_working = 1;
 	params->map_height = 1;
 	params->wall_x = 0.0;

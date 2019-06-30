@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static int		amount_clear(t_wolf *params)
+int				amount_clear(t_doom *params)
 {
 	int res;
 	int i;
@@ -28,7 +28,7 @@ static int		amount_clear(t_wolf *params)
 	return (res);
 }
 
-static void		prepare_hud_text(t_wolf *params)
+static void		prepare_hud_text(t_doom *params)
 {
 	char	*temp1;
 	char	*temp2;
@@ -43,7 +43,7 @@ static void		prepare_hud_text(t_wolf *params)
 	params->hud.text = temp1;
 }
 
-static void		draw_sprites_text(t_wolf *params)
+static void		draw_sprites_text(t_doom *params)
 {
 	SDL_Surface	*text_surface;
 	SDL_Rect	sprites_rect;
@@ -64,7 +64,7 @@ static void		draw_sprites_text(t_wolf *params)
 	SDL_FreeSurface(text_surface);
 }
 
-static void		draw_jasmine_text(t_wolf *params)
+static void		draw_jasmine_text(t_doom *params)
 {
 	SDL_Surface	*text_surface;
 	SDL_Rect	jasmin_rect;
@@ -84,7 +84,7 @@ static void		draw_jasmine_text(t_wolf *params)
 	SDL_FreeSurface(text_surface);
 }
 
-void			draw_hud(t_wolf *params)
+void			draw_hud(t_doom *params)
 {
 	SDL_Rect	main_rect;
 	SDL_Rect	face_rect;

@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void		check_floor_dir(t_wolf *params, t_draw_floor *dr)
+static void		check_floor_dir(t_doom *params, t_draw_floor *dr)
 {
 	if (params->side == 0 && params->sdl.ray_dir_x > 0)
 	{
@@ -36,7 +36,7 @@ static void		check_floor_dir(t_wolf *params, t_draw_floor *dr)
 	}
 }
 
-static void		ceilinig_draw(int x, t_wolf *p, t_draw_floor *dr)
+static void		ceilinig_draw(int x, t_doom *p, t_draw_floor *dr)
 {
 	while (dr->wall_start >= 0)
 	{
@@ -60,7 +60,7 @@ static void		ceilinig_draw(int x, t_wolf *p, t_draw_floor *dr)
 	}
 }
 
-void			draw_textured_ceiling(int x, int height, t_wolf *p)
+void			draw_textured_ceiling(int x, int height, t_doom *p)
 {
 	t_draw_floor	dr;
 
@@ -74,7 +74,7 @@ void			draw_textured_ceiling(int x, int height, t_wolf *p)
 	ceilinig_draw(x, p, &dr);
 }
 
-static void		floor_draw(int x, t_wolf *p, t_draw_floor *dr)
+static void		floor_draw(int x, t_doom *p, t_draw_floor *dr)
 {
 	while (dr->wall_end < SCREEN_HEIGHT)
 	{
@@ -98,7 +98,7 @@ static void		floor_draw(int x, t_wolf *p, t_draw_floor *dr)
 	}
 }
 
-void			draw_textured_floor(int x, int height, t_wolf *p)
+void			draw_textured_floor(int x, int height, t_doom *p)
 {
 	t_draw_floor	dr;
 

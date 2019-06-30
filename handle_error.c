@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-int	handle_error(t_wolf *params)
+int	handle_error(t_doom *params)
 {
 	int i;
 

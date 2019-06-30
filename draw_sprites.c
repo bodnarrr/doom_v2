@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void	draw_sprites_prepare(t_dr_spr *d, t_wolf *params)
+static void	draw_sprites_prepare(t_dr_spr *d, t_doom *params)
 {
 	d->spr_x = params->sprites[d->ind]->x - params->pos_info.pos_x;
 	d->spr_y = params->sprites[d->ind]->y - params->pos_info.pos_y;
@@ -40,7 +40,7 @@ static void	draw_sprites_prepare(t_dr_spr *d, t_wolf *params)
 	d->i = d->draw_start_x;
 }
 
-static void	draw_sprites_main(t_dr_spr *d, t_wolf *params)
+static void	draw_sprites_main(t_dr_spr *d, t_doom *params)
 {
 	while (d->i < d->draw_end_x)
 	{
@@ -67,7 +67,7 @@ static void	draw_sprites_main(t_dr_spr *d, t_wolf *params)
 	}
 }
 
-void		draw_sprites(t_wolf *params)
+void		draw_sprites(t_doom *params)
 {
 	t_dr_spr	d;
 
