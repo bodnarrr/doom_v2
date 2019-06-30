@@ -12,6 +12,38 @@
 
 #include "doom_nukem.h"
 
+static void	process_jump(t_wolf *params)
+{
+	int i;
+
+	Mix_PlayChannel(-1, params->media.sound1, 0);
+	i = -1;
+	while (++i < JUMP_HEIGHT)
+	{
+		params->pos_info.jump -= 1;
+		make_calculations(params);
+		draw_hud(params);
+		SDL_UpdateWindowSurface(params->sdl.window);
+	}
+}
+
+static void	process_game(t_wolf *params)
+{
+	check_event(params);
+	if (params->move_ev.mws || params->move_ev.ad || params->move_ev.ws
+		|| params->move_ev.mad)
+	{
+		route_events(params);
+		route_mouse_move(params);
+		make_calculations(params);
+		draw_sprites(params);
+		draw_hud(params);
+		SDL_UpdateWindowSurface(params->sdl.window);
+	}
+	else if (params->pos_info.jump > 0)
+		process_jump(params);
+}
+
 int			main(int ac, char **av)
 {
 	t_wolf	params;
@@ -29,14 +61,6 @@ int			main(int ac, char **av)
 	draw_hud(&params);
 	Mix_PlayMusic(params.media.music, 1);
 	while (params.is_working)
-	{
-		check_event(&params);
-		route_events(&params);
-		route_mouse_move(&params);
-		make_calculations(&params);
-		draw_sprites(&params);
-		draw_hud(&params);
-		SDL_UpdateWindowSurface(params.sdl.window);
-	}
+		process_game(&params);
 	return (0);
 }

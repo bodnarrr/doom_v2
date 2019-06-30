@@ -76,11 +76,9 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 			params->tex_ind = params->map[iter->map_y][iter->map_x] - 1;
 			iter->hit = 1;
 		}
-		else if (params->map[iter->map_y][iter->map_x] > 19)
-		{
-			params->tex_ind = 0;
+		else if (params->map[iter->map_y][iter->map_x] > 19
+									&& (params->tex_ind = 0) == 0)
 			iter->hit = 1;
-		}
 	}
 }
 

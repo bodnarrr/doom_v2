@@ -77,57 +77,42 @@ void	define_mouse(t_wolf *params)
 		params->move_ev.mad = -1;
 }
 
-bool	check_event(t_wolf *params)
+void	check_event(t_wolf *params)
 {
-	int	i;
-
-	if (SDL_WaitEvent(&params->move_ev.code) != 0)
+	if (SDL_WaitEvent(&params->move_ev.code))
 	{
 		if ((params->move_ev.code.type == SDL_QUIT)
 			|| (params->move_ev.code.type == SDL_KEYDOWN
-			&& params->move_ev.code.key.keysym.sym == SDLK_ESCAPE))
+				&& params->move_ev.code.key.keysym.sym == SDLK_ESCAPE))
 		{
 			params->is_working = 0;
-			return (true);
+			SDL_FlushEvent(params->move_ev.code.type);
+			return ;
 		}
 		else if (params->move_ev.code.type == SDL_KEYDOWN)
 		{
-			key_down(params->move_ev.code.key.keysym.sym, params);
-			return (true);
+			SDL_FlushEvent(params->move_ev.code.type);
+			return (key_down(params->move_ev.code.key.keysym.sym, params));
 		}
 		else if (params->move_ev.code.type == SDL_KEYUP)
 		{
-			key_up(params->move_ev.code.key.keysym.sym, params);
-			return (true);
+			SDL_FlushEvent(params->move_ev.code.type);
+			return (key_up(params->move_ev.code.key.keysym.sym, params));
 		}
 		else if (params->move_ev.code.type == SDL_MOUSEMOTION)
 		{
-			if (params->move_ev.code.motion.xrel != params->move_ev.mouse.xrel
-				|| params->move_ev.code.motion.yrel
-					!= params->move_ev.mouse.yrel)
-				define_mouse(params);
+			define_mouse(params);
+			SDL_FlushEvent(params->move_ev.code.type);
+			return ;
 		}
-		else if (params->move_ev.mouse.xrel == params->move_ev.code.motion.xrel
-			&& params->move_ev.mouse.yrel == params->move_ev.code.motion.yrel)
+		else if (params->move_ev.mouse.xrel == 0
+			&& params->move_ev.mouse.yrel == 0)
 		{
 			params->move_ev.mad = 0;
 			params->move_ev.mws = 0;
-		}
-		if (params->pos_info.jump > 0)
-		{
-			Mix_PlayChannel(-1, params->media.sound1, 0);
-			i = -1;
-			while (++i < JUMP_HEIGHT)
-			{
-				params->pos_info.jump -= 1;
-				make_calculations(params);
-				draw_hud(params);
-				SDL_UpdateWindowSurface(params->sdl.window);
-			}
-			return (true);
+			SDL_FlushEvent(params->move_ev.code.type);
+			return ;
 		}
 		params->move_ev.mouse = params->move_ev.code.motion;
-		SDL_FlushEvent(params->move_ev.code.type);
 	}
-	return (false);
 }

@@ -158,7 +158,6 @@ typedef struct	s_wolf
 	double		ray_x;
 	double		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
-
 	t_move		move_ev;
 	int			wall_start;
 	int			wall_end;
@@ -217,7 +216,7 @@ bool			read_map(t_wolf *params, char *input);
 int				handle_map_error(t_wolf *params);
 bool			init_sdl(t_wolf *params);
 void			init_position(t_wolf *params);
-bool			check_event(t_wolf *params);
+void			check_event(t_wolf *params);
 void			make_calculations(t_wolf *params);
 int				height_for_column(int x, t_wolf *params);
 void			route_events(t_wolf *params);

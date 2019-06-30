@@ -74,8 +74,11 @@ void		draw_sprites(t_wolf *params)
 	d.ind = 0;
 	while (d.ind < params->sprite_amount)
 	{
-		draw_sprites_prepare(&d, params);
-		draw_sprites_main(&d, params);
+		if (params->sprites[d.ind]->is_shown)
+		{
+			draw_sprites_prepare(&d, params);
+			draw_sprites_main(&d, params);
+		}
 		d.ind++;
 	}
 }

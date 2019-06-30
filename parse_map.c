@@ -40,7 +40,7 @@ static void		parse_sprites(t_wolf *params)
 		j = 0;
 		while (params->map[i][j] != -1)
 		{
-			if (params->map[i][j] > 9 && params->map[i][j] < 19)
+			if (params->map[i][j] > 9 && params->map[i][j] < 20)
 			{
 				params->sprites[k] = make_sprite(i, j, params->map[i][j],
 																	params);
