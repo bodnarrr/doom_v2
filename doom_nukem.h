@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   doom-nukem.h                                       :+:      :+:    :+:   */
+/*   doom_nukem.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 12:46:27 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 18:23:50 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ typedef struct	s_dr_spr
 	int		d;
 	Uint32	color;
 	int		ind;
+	double	sprite_dist;
 }				t_dr_spr;
 
 bool			check_arguments(int ac, t_wolf *params);
