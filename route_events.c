@@ -12,30 +12,6 @@
 
 #include "doom_nukem.h"
 
-// static void	increase_rotate_speed(bool is_increasing, t_wolf *params)
-// {
-// 	double	rotate_speed_change;
-
-// 	rotate_speed_change = is_increasing ? 0.004 : -0.004;
-// 	params->pos_info.rotate_speed += rotate_speed_change;
-// 	if (params->pos_info.rotate_speed < MIN_ROTATE_SPEED)
-// 		params->pos_info.rotate_speed = MIN_ROTATE_SPEED;
-// 	else if (params->pos_info.rotate_speed > MAX_ROTATE_SPEED)
-// 		params->pos_info.rotate_speed = MAX_ROTATE_SPEED;
-// }
-
-// static void	increase_speed(bool is_increasing, t_wolf *params)
-// {
-// 	double	speed_change;
-
-// 	speed_change = is_increasing ? 0.009 : -0.009;
-// 	params->pos_info.move_speed += speed_change;
-// 	if (params->pos_info.move_speed < MIN_SPEED)
-// 		params->pos_info.move_speed = MIN_SPEED;
-// 	else if (params->pos_info.move_speed > MAX_SPEED)
-// 		params->pos_info.move_speed = MAX_SPEED;
-// }
-
 static void	move_left_right(bool is_right, t_wolf *params)
 {
 	double	old_dir_x;
@@ -51,8 +27,10 @@ static void	move_left_right(bool is_right, t_wolf *params)
 	new_dir_y = old_dir_x
 			* sin(is_right ? SPEED_RIGHT : SPEED_LEFT)
 			+ params->pos_info.dir_y * cos(is_right ? SPEED_RIGHT : SPEED_LEFT);
-	new_y = params->pos_info.pos_y + new_dir_y * params->pos_info.move_speed / 2;
-	new_x = params->pos_info.pos_x + new_dir_x * params->pos_info.move_speed / 2;
+	new_y = params->pos_info.pos_y + new_dir_y
+			* params->pos_info.move_speed / 2;
+	new_x = params->pos_info.pos_x + new_dir_x
+			* params->pos_info.move_speed / 2;
 	if (params->map[(int)new_y][(int)params->pos_info.pos_x] == 0)
 		params->pos_info.pos_y = new_y;
 	if (params->map[(int)params->pos_info.pos_y][(int)new_x] == 0)
@@ -90,14 +68,4 @@ void		route_events(t_wolf *params)
 		move_left_right(FALSE, params);
 	else if (params->move_ev.ad == -1)
 		move_left_right(TRUE, params);
-	// else if (code == SDL_SCANCODE_UP)
-	// 	increase_speed(TRUE, params);
-	// else if (code == SDL_SCANCODE_DOWN)
-	// 	increase_speed(FALSE, params);
-	// else if (code == SDL_SCANCODE_RIGHT)
-	// 	increase_rotate_speed(TRUE, params);
-	// else if (code == SDL_SCANCODE_LEFT)
-	// 	increase_rotate_speed(FALSE, params);
-	// else if (code == SDL_SCANCODE_SPACE)
-	// 	params->pos_info.jump = JUMP_HEIGHT;
 }

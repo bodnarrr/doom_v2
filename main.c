@@ -30,13 +30,13 @@ int			main(int ac, char **av)
 	Mix_PlayMusic(params.sounds.music, 1);
 	while (params.is_working)
 	{
-			check_event(&params);
-			route_events(&params);
-			route_mouse_move(&params);
-			make_calculations(&params);
-			draw_sprites(&params);
-			draw_hud(&params);
-			SDL_UpdateWindowSurface(params.sdl.window);
-		}
+		check_event(&params);
+		route_events(&params);
+		route_mouse_move(&params);
+		make_calculations(&params);
+		draw_sprites(&params);
+		draw_hud(&params);
+		SDL_UpdateWindowSurface(params.sdl.window);
+	}
 	return (0);
 }

@@ -47,12 +47,12 @@
 
 typedef	struct	s_move
 {
-	SDL_Event	code;
-	int			ws;
-	int			ad;
-	int			mws;
-	int			mad;
-	SDL_MouseMotionEvent mouse;
+	SDL_Event				code;
+	int						ws;
+	int						ad;
+	int						mws;
+	int						mad;
+	SDL_MouseMotionEvent	mouse;
 }				t_move;
 
 typedef struct	s_sdl
@@ -159,8 +159,8 @@ typedef struct	s_wolf
 	int			sprite_amount;
 	t_sound		sounds;
 	t_move		move_ev;
-	int 		wall_start;
-	int 		wall_end;
+	int			wall_start;
+	int			wall_end;
 	bool		squat;
 	bool		fly;
 }				t_wolf;

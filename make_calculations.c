@@ -14,8 +14,8 @@
 
 static void	draw_column(int x, int height, t_wolf *params)
 {
-    draw_textured_wall(x, height, params);
-    draw_textured_floor(x, height, params);
+	draw_textured_wall(x, height, params);
+	draw_textured_floor(x, height, params);
 	draw_textured_ceiling(x, height, params);
 }
 
