@@ -61,6 +61,7 @@ static void		draw_sprites_text(t_doom *params)
 	else
 		SDL_BlitSurface(text_surface, NULL, params->sdl.surface, &sprites_rect);
 	TTF_CloseFont(font);
+	ft_strdel(&params->hud.text);
 	SDL_FreeSurface(text_surface);
 }
 

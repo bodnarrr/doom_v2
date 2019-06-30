@@ -63,5 +63,6 @@ int			main(int ac, char **av)
 	while (params.is_working && !params.win && !params.died)
 		process_game(&params);
 	process_finish(&params);
+	clear_all(&params);
 	return (0);
 }

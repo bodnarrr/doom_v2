@@ -20,9 +20,7 @@
 # include "frameworks/SDL2_mixer.framework/Headers/SDL_mixer.h"
 # include <math.h>
 # include <stdlib.h>
-
 # include <math.h>
-
 # include <stdbool.h>
 
 # define SCREEN_WIDTH 1200
@@ -46,10 +44,6 @@
 typedef struct	s_menu
 {
 	SDL_Surface	*menu_tex;
-	SDL_Surface	*menu_logo;
-	int			menu_active;
-	bool		menu_choose;
-	int			menu_options;
 	SDL_Surface	*lose_tex;
 	SDL_Color	color;
 }				t_menu;
@@ -251,5 +245,6 @@ void			squat(t_doom *params);
 void			load_wall_textures(t_doom *params);
 void			calc_cam_ray(int x, t_doom *params, t_iterations *iter);
 void			key_down(int key, t_doom *params);
+void			clear_all(t_doom *prm);
 
 #endif

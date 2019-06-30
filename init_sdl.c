@@ -49,7 +49,7 @@ bool		init_sdl(t_doom *params)
 		params->error = ft_strdup(SDL_GetError());
 		return (FALSE);
 	}
-	if (!(params->sdl.window = SDL_CreateWindow("Wolf3d",
+	if (!(params->sdl.window = SDL_CreateWindow("Doom-Aladdin",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH,
 		SCREEN_HEIGHT, SDL_WINDOW_SHOWN)))
 	{

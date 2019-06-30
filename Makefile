@@ -21,7 +21,7 @@ SRCS =	add_perimeter_walls.c check_arguments.c check_event.c handle_error.c \
         route_events.c mouse_move.c draw_sprites.c \
         draw_textured_wall.c draw_textured_floor.c \
         draw_hud.c load_sprites_textures.c sprites_pickup.c process_finish.c \
-        fly_jump.c load_wall_textures.c calc_cam_ray.c key_down.c
+        fly_jump.c load_wall_textures.c calc_cam_ray.c key_down.c clear_all.c
 
 OBJECTS = $(SRCS:.c=.o)
 
