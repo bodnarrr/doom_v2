@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 10:11:37 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 12:13:42 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,18 @@ void	key_up(int key, t_wolf *params)
 		params->move_ev.ad = 0;
 }
 
+void	define_mouse(t_wolf *params)
+{
+	if (params->move_ev.code.motion.xrel > 0)
+		params->move_ev.mws = -1;
+	else if (params->move_ev.code.motion.xrel < 0)
+		params->move_ev.mws = 1;
+	else if (params->move_ev.code.motion.yrel > 0)
+		params->move_ev.mad = 1;
+	else if (params->move_ev.code.motion.yrel < 0)
+		params->move_ev.mad = -1;
+}
+
 bool	check_event(t_wolf *params)
 {
 	int				i;
@@ -88,11 +100,18 @@ bool	check_event(t_wolf *params)
 		key_up(params->move_ev.code.key.keysym.sym, params);
 		return (true);
 	}
-	// else if (params->move_ev.code.type == SDL_MOUSEMOTION)
-	// {
-	// 	route_mouse_move(params);
-	// 	return (true);
-	// }
+	else if (params->move_ev.code.type == SDL_MOUSEMOTION)
+	{
+		if (params->move_ev.code.motion.x != params->move_ev.mouse.x
+			|| params->move_ev.code.motion.y != params->move_ev.mouse.y)
+			define_mouse(params);
+		else
+		{
+			params->move_ev.mad = 0;
+			params->move_ev.mws = 0;
+		}
+		
+	}
 	if (params->pos_info.jump > 0)
 	{
 		Mix_PlayChannel(-1, params->sounds.sound1, 0);

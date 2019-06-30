@@ -4,15 +4,19 @@
 
 #include "doom-nukem.h"
 
-static void	horizontal_rotate(bool is_right, t_wolf *params)
+static void	horizontal_rotate(t_wolf *params)
 {
 	double	speed;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	speed = is_right
-			? -params->pos_info.rotate_speed
-			: params->pos_info.rotate_speed;
+	speed = 0.0;
+	if (params->move_ev.mws == -1)
+		speed = -params->pos_info.rotate_speed;
+	else if (params->move_ev.mws == 1)
+		speed = params->pos_info.rotate_speed;
+	if (speed != 0)
+	{
 	old_dir_x = params->pos_info.dir_x;
 	params->pos_info.dir_x = params->pos_info.dir_x * cos(speed)
 							 - params->pos_info.dir_y * sin(speed);
@@ -23,20 +27,21 @@ static void	horizontal_rotate(bool is_right, t_wolf *params)
 							   - params->pos_info.plane_y * sin(speed);
 	params->pos_info.plane_y = old_plane_x * sin(speed)
 							   + params->pos_info.plane_y * cos(speed);
+	}
 }
 
-static void	vertical_rotate(bool is_up, t_wolf *params)
+static void	vertical_rotate(t_wolf *params)
 {
-	int delta;
-
-	delta = is_up ? -DELTA_MOUSE : DELTA_MOUSE;
-	params->pos_info.height += delta;
+	if (params->move_ev.mad == 1)
+		params->pos_info.height -= DELTA_MOUSE;
+	else if (params->move_ev.mad == -1)
+		params->pos_info.height += DELTA_MOUSE;
 }
 
 void		route_mouse_move(t_wolf *params)
 {
-	if (params->move_ev.code.motion.xrel != 0)
-		horizontal_rotate(params->move_ev.code.motion.xrel > 0, params);
-	if (params->move_ev.code.motion.yrel != 0)
-		vertical_rotate(params->move_ev.code.motion.yrel > 0, params);
+	if (params->move_ev.mws != 0)
+		horizontal_rotate(params);
+	if (params->move_ev.mad != 0)
+		vertical_rotate(params);
 }

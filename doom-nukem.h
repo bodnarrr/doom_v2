@@ -6,7 +6,7 @@
 /*   By: vonischu <vonischu@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 10:18:40 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 12:41:47 by vonischu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define TRUE 1
 # define FALSE 0
 # define READ_SIZE 32
-# define DELTA_MOUSE 15
+# define DELTA_MOUSE 10
 
 # define MIN_SPEED 0
 # define MAX_SPEED 0.25
@@ -50,7 +50,8 @@ typedef	struct	s_move
 	SDL_Event	code;
 	int			ws;
 	int			ad;
-	int			mm;
+	int			mws;
+	int			mad;
 	SDL_MouseMotionEvent mouse;
 }				t_move;
 
