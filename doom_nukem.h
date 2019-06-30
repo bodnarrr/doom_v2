@@ -6,7 +6,7 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:46:15 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 18:23:50 by pshchuro         ###   ########.fr       */
+/*   Updated: 2019/06/30 20:11:44 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,6 @@ typedef struct	s_wolf
 	double		ray_x;
 	double		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
-
 	t_move		move_ev;
 	int			wall_start;
 	int			wall_end;

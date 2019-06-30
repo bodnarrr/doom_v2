@@ -6,7 +6,7 @@
 /*   By: pshchuro <pshchuro@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 17:43:29 by abodnar           #+#    #+#             */
-/*   Updated: 2019/06/30 13:00:47 by vonischu         ###   ########.fr       */
+/*   Updated: 2019/06/30 20:29:06 by pshchuro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,94 @@ void	jump(t_wolf *params)
 	int height;
 	int delta_height;
 
-	height = params->pos_info.height;
-	delta_height = 0;
-	while (delta_height < 100)
+	if(!params->fly && !params->squat)
 	{
-		params->pos_info.height = height + delta_height;
-		make_calculations(params);
-		draw_sprites(params);
-		draw_hud(params);
-		SDL_UpdateWindowSurface(params->sdl.window);
-		delta_height += 10;
+		height = params->pos_info.height;
+		delta_height = 0;
+		while (delta_height < 100)
+		{
+			params->pos_info.height = height + delta_height;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+			delta_height += 10;
+		}
+		while (delta_height >= 0)
+		{
+			params->pos_info.height = height + delta_height;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+			delta_height -= 10;
+		}
 	}
-	while (delta_height >= 0)
+}
+
+void	fly(t_wolf *params)
+{
+	int delta;
+
+	delta = 250;
+	if (!params->fly && !params->squat)
 	{
-		params->pos_info.height = height + delta_height;
-		make_calculations(params);
-		draw_sprites(params);
-		draw_hud(params);
-		SDL_UpdateWindowSurface(params->sdl.window);
-		delta_height -= 10;
+		params->fly = TRUE;
+		while (delta > 0)
+		{
+			params->pos_info.height += 25;
+			delta -= 25;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+		}
+	}
+	else if (!params->squat)
+	{
+		params->fly = FALSE;
+		while (delta > 0)
+		{
+			delta -= 25;
+			params->pos_info.height -= 25;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+		}
+	}
+}
+
+void	squat(t_wolf *params)
+{
+	int delta;
+
+	delta = 250;
+	if (!params->squat && !params->fly)
+	{
+		params->squat = TRUE;
+		while (delta > 0)
+		{
+			params->pos_info.height -= 25;
+			delta -= 25;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+		}
+	}
+	else if (!params->fly)
+	{
+		params->squat = FALSE;
+		while (delta > 0)
+		{
+			delta -= 25;
+			params->pos_info.height += 25;
+			make_calculations(params);
+			draw_sprites(params);
+			draw_hud(params);
+			SDL_UpdateWindowSurface(params->sdl.window);
+		}
 	}
 }
 
@@ -51,6 +120,10 @@ void	key_down(int key, t_wolf *params)
 		params->move_ev.ad = 1;
 	else if (key == SDLK_SPACE)
 		jump(params);
+	else if (key == SDLK_LALT)
+		squat(params);
+	else if (key == SDLK_LCTRL)
+		fly(params);
 }
 
 void	key_up(int key, t_wolf *params)
