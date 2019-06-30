@@ -12,29 +12,40 @@
 
 #include "doom_nukem.h"
 
-static void	prepare_textures(t_wolf *params)
+static void	load_hud_textures(t_wolf *params)
 {
-	params->texture = IMG_Load("./media/textures/fire_smart5.jpg");
-	params->sprite.texture = IMG_Load("./media/pics/parrot.png");
-	params->ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
-	params->floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
-	params->textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
-	params->textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
-	params->textures[2] = IMG_Load("./media/textures/green_smart1.jpg");
-	params->textures[3] = IMG_Load("./media/textures/fire_smart3.jpg");
-	params->textures[4] = IMG_Load("./media/textures/fire_smart4.jpg");
-	params->textures[5] = IMG_Load("./media/textures/water.jpg");
-	params->textures[6] = IMG_Load("./media/textures/sky_smart1.jpg");
-	params->textures[7] = IMG_Load("./media/textures/sky_smart2.jpg");
-	params->textures[8] = IMG_Load("./media/textures/sky_smart3.jpg");
 	params->hud.main_hud = IMG_Load("./media/pics/hud.jpg");
 	params->hud.face = IMG_Load("./media/pics/Aladdin.png");
 	params->hud.logo = IMG_Load("./media/pics/aladdin_small.png");
-	params->sounds.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
-	params->sounds.sound1 = Mix_LoadWAV("./media/sounds/sound.mp3");
-	params->sounds.sound2 = Mix_LoadWAV("./media/sounds/tiger.mp3");
-	params->sprite.y = 2;
-	params->sprite.x = 5;
+}
+
+static void	load_sounds(t_wolf *params)
+{
+	params->media.music = Mix_LoadMUS("./media/sounds/Prince_Outfit.mp3");
+	params->media.sound1 = Mix_LoadWAV("./media/sounds/sound.mp3");
+	params->media.sound2 = Mix_LoadWAV("./media/sounds/tiger.mp3");
+}
+
+static void	load_wall_textures(t_wolf *params)
+{
+	params->media.textures[0] = IMG_Load("./media/textures/fire_smart5.jpg");
+	params->media.textures[1] = IMG_Load("./media/textures/fire_smart1.jpg");
+	params->media.textures[2] = IMG_Load("./media/textures/green_smart1.jpg");
+	params->media.textures[3] = IMG_Load("./media/textures/fire_smart3.jpg");
+	params->media.textures[4] = IMG_Load("./media/textures/fire_smart4.jpg");
+	params->media.textures[5] = IMG_Load("./media/textures/water.jpg");
+	params->media.textures[6] = IMG_Load("./media/textures/sky_smart1.jpg");
+	params->media.textures[7] = IMG_Load("./media/textures/sky_smart2.jpg");
+	params->media.textures[8] = IMG_Load("./media/textures/sky_smart3.jpg");
+	params->media.ceil_tex = IMG_Load("./media/textures/sky_smart4.jpg");
+	params->media.floor_tex = IMG_Load("./media/textures/fire_smart.jpg");
+}
+
+static void	load_media(t_wolf *params)
+{
+	load_wall_textures(params);
+	load_sounds(params);
+	load_hud_textures(params);
 }
 
 bool		init_sdl(t_wolf *params)
@@ -64,6 +75,6 @@ bool		init_sdl(t_wolf *params)
 	}
 	SDL_SetRelativeMouseMode(SDL_TRUE);
 	params->sdl.surface = SDL_GetWindowSurface(params->sdl.window);
-	prepare_textures(params);
+	load_media(params);
 	return (TRUE);
 }

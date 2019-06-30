@@ -27,7 +27,7 @@ int			main(int ac, char **av)
 	init_position(&params);
 	make_calculations(&params);
 	draw_hud(&params);
-	Mix_PlayMusic(params.sounds.music, 1);
+	Mix_PlayMusic(params.media.music, 1);
 	while (params.is_working)
 	{
 		check_event(&params);

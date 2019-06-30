@@ -20,7 +20,7 @@ SRCS =	add_perimeter_walls.c check_arguments.c check_event.c handle_error.c \
         init_sdl.c main.c make_calculations.c parse_map.c read_map.c \
         route_events.c mouse_move.c draw_sprites.c \
         draw_textured_wall.c draw_textured_floor.c \
-        draw_hud.c
+        draw_hud.c load_sprites_textures.c
 
 OBJECTS = $(SRCS:.c=.o)
 

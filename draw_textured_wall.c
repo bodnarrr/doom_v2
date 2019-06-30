@@ -62,16 +62,16 @@ void	draw_textured_wall(int x, int height, t_wolf *p)
 	while (dr.wall_start < dr.wall_end)
 	{
 		dr.pos = x + (dr.wall_start * SCREEN_WIDTH);
-		dr.tex_x = (int)(p->wall_x * (double)p->textures[p->tex_ind]->w);
+		dr.tex_x = (int)(p->wall_x * (double)p->media.textures[p->tex_ind]->w);
 		if ((p->side == 0 && p->ray_x > 0) || (p->side == 1 && p->ray_y < 0))
-			dr.tex_x = p->textures[p->tex_ind]->w - dr.tex_x - 1;
+			dr.tex_x = p->media.textures[p->tex_ind]->w - dr.tex_x - 1;
 		dr.d = dr.wall_start * 2 - SCREEN_HEIGHT + height - \
 				p->pos_info.height * 2;
-		dr.tex_y = ((dr.d * p->textures[p->tex_ind]->w) / height) / 2;
-		if (dr.tex_x >= 0 && dr.tex_x < p->textures[p->tex_ind]->h &&\
-			dr.tex_y >= 0 && dr.tex_y < p->textures[p->tex_ind]->w)
-			p->wall_color = set_color(((int*)p->textures\
-			[p->tex_ind]->pixels)[p->textures[p->tex_ind]->h\
+		dr.tex_y = ((dr.d * p->media.textures[p->tex_ind]->w) / height) / 2;
+		if (dr.tex_x >= 0 && dr.tex_x < p->media.textures[p->tex_ind]->h &&\
+			dr.tex_y >= 0 && dr.tex_y < p->media.textures[p->tex_ind]->w)
+			p->wall_color = set_color(((int*)p->media.textures\
+			[p->tex_ind]->pixels)[p->media.textures[p->tex_ind]->h\
 			* dr.tex_y + dr.tex_x], p->z_buffer[x]);
 		dr.pixels[dr.pos] = p->wall_color;
 		dr.wall_start++;

@@ -56,11 +56,13 @@ void			draw_textured_ceiling(int x, int height, t_wolf *p)
 															p->pos_info.pos_x;
 		dr.cur_floor_y = dr.weight * dr.floor_y + (1.0 - dr.weight) * \
 															p->pos_info.pos_y;
-		dr.floor_tex_x = (int)(dr.cur_floor_x * p->texture->w) % p->texture->w;
-		dr.floor_tex_y = (int)(dr.cur_floor_y * p->texture->h) % p->texture->h;
+		dr.floor_tex_x = (int)(dr.cur_floor_x * p->media.floor_tex->w)
+				% p->media.floor_tex->w;
+		dr.floor_tex_y = (int)(dr.cur_floor_y * p->media.floor_tex->h)
+				% p->media.floor_tex->h;
 		dr.ceil_pos = x + (dr.wall_start * SCREEN_WIDTH);
-		dr.pixels[dr.ceil_pos] = set_color(((int*)p->ceil_tex->pixels)\
-			[p->ceil_tex->w * dr.floor_tex_y + dr.floor_tex_x], dr.cur_dist);
+		dr.pixels[dr.ceil_pos] = set_color(((int*)p->media.floor_tex->pixels)\
+			[p->media.floor_tex->w * dr.floor_tex_y + dr.floor_tex_x], dr.cur_dist);
 		dr.wall_start--;
 	}
 }
@@ -86,10 +88,13 @@ void			draw_textured_floor(int x, int height, t_wolf *p)
 															p->pos_info.pos_x;
 		dr.cur_floor_y = dr.weight * dr.floor_y + (1.0 - dr.weight) * \
 															p->pos_info.pos_y;
-		dr.floor_tex_x = (int)(dr.cur_floor_x * p->texture->w) % p->texture->w;
-		dr.floor_tex_y = (int)(dr.cur_floor_y * p->texture->h) % p->texture->h;
-		dr.pixels[dr.pos] = set_color(((int*)p->floor_tex->pixels)\
-			[p->floor_tex->w * dr.floor_tex_y + dr.floor_tex_x], dr.cur_dist);
+		dr.floor_tex_x = (int)(dr.cur_floor_x * p->media.ceil_tex->w)
+				% p->media.ceil_tex->w;
+		dr.floor_tex_y = (int)(dr.cur_floor_y * p->media.ceil_tex->h)
+				% p->media.ceil_tex->h;
+		dr.pixels[dr.pos] = set_color(((int*)p->media.ceil_tex->pixels)\
+			[p->media.ceil_tex->w * dr.floor_tex_y + dr.floor_tex_x],
+																dr.cur_dist);
 		dr.wall_end++;
 	}
 }

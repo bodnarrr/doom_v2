@@ -12,12 +12,48 @@
 
 #include "doom_nukem.h"
 
-static void	parse_sprites(t_wolf *params)
+static t_sprite	*make_sprite(int y, int x, int id, t_wolf *params)
 {
-	ft_printf("Sprites amount: %d\n", params->sprite_amount);
+	t_sprite	*result;
+
+	result = (t_sprite*)ft_memalloc(sizeof(t_sprite));
+	result->id = id;
+	result->x = x;
+	result->y = y;
+	result->is_shown = id % 10 == 8 ? false : true;
+	result->texture = params->media.sprites_textures[id % 10];
+	return (result);
 }
 
-static int	*line_to_int_arr(char *line, t_wolf *params)
+static void		parse_sprites(t_wolf *params)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	params->sprites = (t_sprite**)ft_memalloc(sizeof(t_sprite)
+			* (params->sprite_amount + 1));
+	i = 0;
+	k = 0;
+	while (params->map[i] != NULL)
+	{
+		j = 0;
+		while (params->map[i][j] != -1)
+		{
+			if (params->map[i][j] > 9 && params->map[i][j] < 19)
+			{
+				params->sprites[k] = make_sprite(i, j, params->map[i][j],
+																	params);
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+	params->sprites[k] = NULL;
+}
+
+static int		*line_to_int_arr(char *line, t_wolf *params)
 {
 	char	**splt;
 	int		i;
@@ -44,7 +80,7 @@ static int	*line_to_int_arr(char *line, t_wolf *params)
 	return (res);
 }
 
-void		parse_map(t_wolf *params, char *raw_map)
+void			parse_map(t_wolf *params, char *raw_map)
 {
 	int		i;
 	char	*map_cpy;
@@ -62,6 +98,7 @@ void		parse_map(t_wolf *params, char *raw_map)
 		i++;
 	}
 	params->map[i] = NULL;
+	load_sprites_textures(params);
 	parse_sprites(params);
 	params->did_read_map = TRUE;
 }

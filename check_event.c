@@ -115,7 +115,7 @@ bool	check_event(t_wolf *params)
 		}
 		if (params->pos_info.jump > 0)
 		{
-			Mix_PlayChannel(-1, params->sounds.sound1, 0);
+			Mix_PlayChannel(-1, params->media.sound1, 0);
 			i = -1;
 			while (++i < JUMP_HEIGHT)
 			{

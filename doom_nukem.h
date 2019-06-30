@@ -39,6 +39,7 @@
 # define MAX_ROTATE_SPEED 0.12
 
 # define TX_COUNT 9
+# define SPR_COUNT 10
 
 # define SPEED_RIGHT -1.5
 # define SPEED_LEFT 1.5
@@ -71,6 +72,8 @@ typedef struct	s_sprite
 	SDL_Surface	*texture;
 	int			x;
 	int			y;
+	bool		is_shown;
+	int			id;
 }				t_sprite;
 
 typedef struct	s_hud
@@ -126,12 +129,16 @@ typedef struct	s_position
 	double		perp_wall_dist;
 }				t_position;
 
-typedef struct	s_sound
+typedef struct	s_media
 {
+	SDL_Surface	*sprites_textures[SPR_COUNT];
+	SDL_Surface *textures[TX_COUNT];
+	SDL_Surface	*ceil_tex;
+	SDL_Surface	*floor_tex;
 	Mix_Music	*music;
 	Mix_Chunk	*sound1;
 	Mix_Chunk	*sound2;
-}				t_sound;
+}				t_media;
 
 typedef struct	s_wolf
 {
@@ -145,24 +152,21 @@ typedef struct	s_wolf
 	char		*error;
 	int			side;
 	Uint32		wall_color;
-	SDL_Surface *texture;
-	SDL_Surface *textures[TX_COUNT];
 	int			tex_ind;
 	t_hud		hud;
-	t_sprite	sprite;
 	double		wall_x;
 	double		ray_x;
 	double		ray_y;
 	double		z_buffer[SCREEN_WIDTH];
-	SDL_Surface	*ceil_tex;
-	SDL_Surface	*floor_tex;
-	int			sprite_amount;
-	t_sound		sounds;
+
 	t_move		move_ev;
 	int			wall_start;
 	int			wall_end;
 	bool		squat;
 	bool		fly;
+	int			sprite_amount;
+	t_sprite	**sprites;
+	t_media		media;
 }				t_wolf;
 
 typedef struct	s_iteration
@@ -204,5 +208,6 @@ void			draw_hud(t_wolf *params);
 Uint32			set_color(int color, double dist);
 int				calculate_start(int height, t_wolf *params);
 int				calculate_end(int height, t_wolf *params);
+void			load_sprites_textures(t_wolf *params);
 
 #endif
