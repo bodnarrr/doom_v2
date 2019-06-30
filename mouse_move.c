@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void	horizontal_rotate(t_wolf *params)
+static void	horizontal_rotate(t_doom *params)
 {
 	double	speed;
 	double	old_dir_x;
@@ -38,7 +38,7 @@ static void	horizontal_rotate(t_wolf *params)
 	}
 }
 
-static void	vertical_rotate(t_wolf *params)
+static void	vertical_rotate(t_doom *params)
 {
 	if (params->move_ev.mad == 1)
 		params->pos_info.height -= DELTA_MOUSE;
@@ -46,7 +46,7 @@ static void	vertical_rotate(t_wolf *params)
 		params->pos_info.height += DELTA_MOUSE;
 }
 
-void		route_mouse_move(t_wolf *params)
+void		route_mouse_move(t_doom *params)
 {
 	if (params->move_ev.mws != 0)
 		horizontal_rotate(params);

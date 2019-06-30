@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static t_sprite	*make_sprite(int y, int x, int id, t_wolf *params)
+static t_sprite	*make_sprite(int y, int x, int id, t_doom *params)
 {
 	t_sprite	*result;
 
@@ -25,7 +25,7 @@ static t_sprite	*make_sprite(int y, int x, int id, t_wolf *params)
 	return (result);
 }
 
-static void		parse_sprites(t_wolf *params)
+static void		parse_sprites(t_doom *params)
 {
 	int		i;
 	int		j;
@@ -40,7 +40,7 @@ static void		parse_sprites(t_wolf *params)
 		j = 0;
 		while (params->map[i][j] != -1)
 		{
-			if (params->map[i][j] > 9 && params->map[i][j] < 19)
+			if (params->map[i][j] > 9 && params->map[i][j] < 20)
 			{
 				params->sprites[k] = make_sprite(i, j, params->map[i][j],
 																	params);
@@ -53,7 +53,7 @@ static void		parse_sprites(t_wolf *params)
 	params->sprites[k] = NULL;
 }
 
-static int		*line_to_int_arr(char *line, t_wolf *params)
+static int		*line_to_int_arr(char *line, t_doom *params)
 {
 	char	**splt;
 	int		i;
@@ -80,7 +80,7 @@ static int		*line_to_int_arr(char *line, t_wolf *params)
 	return (res);
 }
 
-void			parse_map(t_wolf *params, char *raw_map)
+void			parse_map(t_doom *params, char *raw_map)
 {
 	int		i;
 	char	*map_cpy;

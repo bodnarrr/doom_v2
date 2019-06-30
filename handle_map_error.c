@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-int	handle_map_error(t_wolf *params)
+int	handle_map_error(t_doom *params)
 {
 	ft_printf("Error on map reading: %s\n", params->error);
 	ft_strdel(&params->error);

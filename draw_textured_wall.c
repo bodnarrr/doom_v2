@@ -30,7 +30,7 @@ Uint32	set_color(int color, double dist)
 	return (color_new);
 }
 
-int		calculate_start(int height, t_wolf *params)
+int		calculate_start(int height, t_doom *params)
 {
 	int start;
 
@@ -40,7 +40,7 @@ int		calculate_start(int height, t_wolf *params)
 	return (start);
 }
 
-int		calculate_end(int height, t_wolf *params)
+int		calculate_end(int height, t_doom *params)
 {
 	int end;
 
@@ -50,7 +50,7 @@ int		calculate_end(int height, t_wolf *params)
 	return (end);
 }
 
-void	draw_textured_wall(int x, int height, t_wolf *p)
+void	draw_textured_wall(int x, int height, t_doom *p)
 {
 	t_draw_wall	dr;
 

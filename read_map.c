@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static bool	find_empty_position(t_wolf *params, int **map)
+static bool	find_empty_position(t_doom *params, int **map)
 {
 	int	i;
 	int j;
@@ -37,7 +37,7 @@ static bool	find_empty_position(t_wolf *params, int **map)
 	return (FALSE);
 }
 
-static bool	check_map(t_wolf *params, char *raw_map)
+static bool	check_map(t_doom *params, char *raw_map)
 {
 	char	*symbols;
 	char	*map_cpy;
@@ -58,7 +58,7 @@ static bool	check_map(t_wolf *params, char *raw_map)
 	return (TRUE);
 }
 
-static char	*read_file(t_wolf *params, char *input, int fd)
+static char	*read_file(t_doom *params, char *input, int fd)
 {
 	char	*res;
 	char	*cpy;
@@ -87,7 +87,7 @@ static char	*read_file(t_wolf *params, char *input, int fd)
 	return (res);
 }
 
-bool		read_map(t_wolf *params, char *input)
+bool		read_map(t_doom *params, char *input)
 {
 	char	*raw_map;
 	char	*cpy;

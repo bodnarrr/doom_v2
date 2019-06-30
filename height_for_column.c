@@ -12,7 +12,7 @@
 
 #include "doom_nukem.h"
 
-static void	calc_cam_ray(int x, t_wolf *params, t_iterations *iter)
+static void	calc_cam_ray(int x, t_doom *params, t_iterations *iter)
 {
 	iter->camera_x = (double)2.0 * (double)x / (double)(SCREEN_WIDTH)
 			- (double)1.0;
@@ -26,7 +26,7 @@ static void	calc_cam_ray(int x, t_wolf *params, t_iterations *iter)
 	iter->delta_dist_y = fabs((double)1.0 / iter->ray_dir_y);
 }
 
-static void	calc_axes(t_wolf *params, t_iterations *iter)
+static void	calc_axes(t_doom *params, t_iterations *iter)
 {
 	if (iter->ray_dir_x < 0)
 	{
@@ -54,7 +54,7 @@ static void	calc_axes(t_wolf *params, t_iterations *iter)
 	}
 }
 
-void		check_wall_hit(t_wolf *params, t_iterations *iter)
+void		check_wall_hit(t_doom *params, t_iterations *iter)
 {
 	while (iter->hit == 0)
 	{
@@ -76,15 +76,13 @@ void		check_wall_hit(t_wolf *params, t_iterations *iter)
 			params->tex_ind = params->map[iter->map_y][iter->map_x] - 1;
 			iter->hit = 1;
 		}
-		else if (params->map[iter->map_y][iter->map_x] > 19)
-		{
-			params->tex_ind = 0;
+		else if (params->map[iter->map_y][iter->map_x] > 19
+									&& (params->tex_ind = 0) == 0)
 			iter->hit = 1;
-		}
 	}
 }
 
-void		calc_wall_x(t_wolf *params, t_iterations *iter, int x)
+void		calc_wall_x(t_doom *params, t_iterations *iter, int x)
 {
 	if (params->side == 0)
 		params->wall_x = params->pos_info.pos_y + iter->perp_wall_dist
@@ -98,7 +96,7 @@ void		calc_wall_x(t_wolf *params, t_iterations *iter, int x)
 	params->z_buffer[x] = iter->perp_wall_dist;
 }
 
-void		calc_wall_distance(t_wolf *params, t_iterations *iter, int x)
+void		calc_wall_distance(t_doom *params, t_iterations *iter, int x)
 {
 	if (params->side == 0)
 		iter->perp_wall_dist = ((double)iter->map_x - params->pos_info.pos_x
@@ -116,7 +114,7 @@ void		calc_wall_distance(t_wolf *params, t_iterations *iter, int x)
 	calc_wall_x(params, iter, x);
 }
 
-int			height_for_column(int x, t_wolf *params)
+int			height_for_column(int x, t_doom *params)
 {
 	t_iterations iter;
 

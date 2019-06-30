@@ -12,14 +12,14 @@
 
 #include "doom_nukem.h"
 
-static void	draw_column(int x, int height, t_wolf *params)
+static void	draw_column(int x, int height, t_doom *params)
 {
 	draw_textured_wall(x, height, params);
 	draw_textured_floor(x, height, params);
 	draw_textured_ceiling(x, height, params);
 }
 
-void		make_calculations(t_wolf *params)
+void		make_calculations(t_doom *params)
 {
 	int	i;
 	int wall_height;
